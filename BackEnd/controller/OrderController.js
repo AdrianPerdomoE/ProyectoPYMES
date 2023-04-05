@@ -1,6 +1,15 @@
 "use strict"
 var Order = require('../models/Order');
 var OrderItem = require('../models/OrderItem')
+function convertItems(list,OrderSaved){
+    return list.map(item => {
+        let newOrderItem = OrderItem();
+        newOrderItem.order_id = OrderSaved._id;
+        newOrderItem.product_id = item.product_id;
+        newOrderItem.amount = item.amount;
+        return newOrderItem;
+    });
+}
 var OrderController = {
     saveOrder: (req, res) =>
     {
@@ -11,32 +20,23 @@ var OrderController = {
         order.creationDate = new Date();
         let items = params.items
     
-        order.save((err, OrderSaved) => {
-            if (err) {
-                return res.status(500).send({ msg: 'Error in petition' })
-            }
+        order.save().then((OrderSaved) => {
             if (!OrderSaved) {
                 return res.status(404).send({ msg: 'Order could not be saved' })
             }
-           
-            items.forEach(item => {
-                let newOrderItem = OrderItem()
-                newOrderItem.order_id = orderSaved._id
-                newOrderItem.product_id = item.product_id
-                newOrderItem.amount = item.amount
-                item = newOrderItem
-            });
-            OrderItem.insertMany(items,(err,orderItemSaved)=>{
-                if (err) {
-                    return res.status(500).send({ msg: 'Error in petition' })
-                }
-                if (!orderItemSaved) {
-                    return res.status(404).send({ msg: 'Order could not be saved' })
-                } 
+            if (items){
+                items = convertItems(items,OrderSaved);
+                OrderItem.insertMany(items).then((orderItemSaved)=>{
+                    if (!orderItemSaved) {
+                        return res.status(404).send({ msg: 'Order could not be saved' })
+                    } 
+                    return res.status(200).send({ msg: 'Order created successfully',  ORDER: OrderSaved });
+                });
+            }
+            else{
                 return res.status(200).send({ msg: 'Order created successfully',  ORDER: OrderSaved });
-            });
-        })
-
+            }
+        });
     },
     getOrder: function (req, res)
     
@@ -46,33 +46,27 @@ var OrderController = {
         if (!id) {
             return req.status(404).send({ message: 'Id was not provided' })
         }
-        Order.findById(id ,async (err, order) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error at returning the data.' });
-            }
+        Order.findById(id).then((order) => {
+            
 
             if (!order) return req.status(404).send({ message: 'The order dont exist' })
 
-            let itemlist = await OrderItem.findById(id,(err, orderItems)=>{
-                if (err) {
-                    return res.status(500).send({ message: 'Error at returning the data.' });
+            OrderItem.find({order_id:id}).exec().then((orderItems)=>{
+                if (!orderItems) {
+                    return res.status(404).send({ message: 'Error at returning the data.' });
                 }
-            })
-            return res.status(200).send({ORDER: order, ORDERITEMS:itemlist });
-
-        })
+                return res.status(200).send({ORDER: order, ORDERITEMS:orderItems });
+            });
+        });
     },
     getOrders: function(req,res){
         var client_id = req.params.id;
-        Order.find({client_id:client_id}).exec((err, orders) => {
-            if (err) {
-                return res.status(500).send({ msg: "There has been an error loading the orders" });
-            }
+        Order.find({client_id:client_id}).exec().then((orders) => {
             if (!orders) {
                 return res.status(404).send({ msg: "There is not orders" });
             }
             return res.status(200).send({ ORDERS: orders });
-        });
+        }); 
     }
 }
 module.exports = OrderController
