@@ -27,7 +27,7 @@ var PymeController = {
             wallet.money = 0;
 
             wallet.save((err, walletSaved) => {
-                if(walletSaved) return res.status(200).send({ msg: 'Pyme created successfully', pyme: pymeSaved })
+                if(walletSaved) return res.status(200).send({ msg: 'Pyme created successfully', PYME: pymeSaved });
             })
             
         })
@@ -48,7 +48,7 @@ var PymeController = {
 
             if (!pyme) return req.status(404).send({ message: 'The pyme dont exist' })
 
-            return res.status(200).send({ pyme: pyme });
+            return res.status(200).send({ PYME: pyme });
 
         })
     },
@@ -60,7 +60,19 @@ var PymeController = {
             if (!pymes) {
                 return res.status(404).send({ msg: "There is not pymes" });
             }
-            return res.status(200).send({ pymes });
+            return res.status(200).send({ PYMES: pymes });
+        });
+    },
+    getPymesByCategory: function (req, res){
+        let pymeCategory = new RegExp(`${req.params.searchBy}`, "i")
+        Pyme.find({category:pymeCategory}).exec((err, pymes) => {
+            if (err) {
+                return res.status(500).send({ msg: "Error during getting the pymes" });
+            }
+            if (!pymes) {
+                return res.status(404).send({ msg: "There is not pymes" });
+            }
+            return res.status(200).send({ PYMES: pymes });
         });
     },
     getExistence: function (req, res)
@@ -87,7 +99,7 @@ var PymeController = {
             if (!pymeUpdated) return res.status(404).send({ message: 'No se ha podido actualizar' });
 
             return res.status(200).send({
-                pyme: pymeUpdated
+                PYME: pymeUpdated
             })
         })
     }

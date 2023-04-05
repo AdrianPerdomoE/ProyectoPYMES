@@ -9,4 +9,4 @@ var OrderItem = Schema({
     amount: Number
 });
 
-module.exports = mongoose.model("orderItem",OrderItem);
+module.exports = mongoose.model("OrderItem",OrderItem);

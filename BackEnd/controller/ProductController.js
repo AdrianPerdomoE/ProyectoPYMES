@@ -21,7 +21,7 @@ var productController = {
             if (!productStored) {
                 return res.status(404).send({ msg: "Product could not be saved" });
             }
-            return res.status(200).send({ msg: "Product added successfully", product: productStored });
+            return res.status(200).send({ msg: "Product added successfully", PRODUCT: productStored });
         });
     },
     getProduct: (req, res) => {
@@ -33,7 +33,7 @@ var productController = {
             if (!product) {
                 return res.status(404).send({ msg: "The product dont exist" });
             }
-            return res.status(200).send({ product });
+            return res.status(200).send({ PRODUCT: product });
         });
     },
     getProducts: (req, res) => {
@@ -44,7 +44,7 @@ var productController = {
             if (!products) {
                 return res.status(404).send({ msg: "There is not products" });
             }
-            return res.status(200).send({ products });
+            return res.status(200).send({ PRODUCTS: products });
         });
     },
     getProductsById: (req, res) => {
@@ -56,7 +56,7 @@ var productController = {
             if (!products) {
                 return res.status(404).send({ msg: "There is no products" });
             }
-            return res.status(200).send({ products });
+            return res.status(200).send({ PRODUCTS: products });
         });
     },
     updateProduct: (req, res) => {
@@ -69,7 +69,7 @@ var productController = {
             if (!productUpDated) {
                 return res.status(404).send({ msg: "Product could no be found" });
             }
-            return res.status(200).send({ msg: "Product updated successfully", product: productUpDated });
+            return res.status(200).send({ msg: "Product updated successfully", PRODUCT: productUpDated });
         });
     },
     deleteProduct: (req, res) => {
@@ -81,7 +81,7 @@ var productController = {
             if (!productDeleted) {
                 return res.status(404).send({ msg: "Product could not be found" });
             }
-            return res.status(200).send({ msg: "Product deleted successfully", product: productDeleted });
+            return res.status(200).send({ msg: "Product deleted successfully", PRODUCT: productDeleted });
         });
     },
     uploadImagen: (req, res) => {
@@ -101,7 +101,7 @@ var productController = {
                     if (!productUpdated) {
                         return res.status(404).send({ msg: "The image dont exist" });
                     }
-                    return res.status(200).send({ productUpdated });
+                    return res.status(200).send({ PRODUCT: productUpdated });
                 });
             }
             else {
@@ -135,7 +135,7 @@ var productController = {
             if (!products) {
                 return res.status(404).send({ msg: "There is not products" });
             }
-            return res.status(200).send({ products });
+            return res.status(200).send({ PRODUCTS: products });
         });
     }
 };
