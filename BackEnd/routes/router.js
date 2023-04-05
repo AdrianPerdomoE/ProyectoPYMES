@@ -47,14 +47,14 @@ router.get('/getOrders/:id',OrderController.getOrders);
 router.get('/getWallet/:id',WalletController.getWallet);
 //rutas para suscripciones
 router.post('/saveSuscription',SuscriptionController.saveSuscription);
-router.get('/getSuscription:id',SuscriptionController.getSuscription);
-router.get('/getSuscriptionsUser:id',SuscriptionController.getSuscriptionsUser);
-router.get('/getSuscriptionsPyme:id',SuscriptionController.getSuscriptionsPyme);
+router.get('/getSuscription/:id',SuscriptionController.getSuscription);
+router.get('/getSuscriptionsUser/:id',SuscriptionController.getSuscriptionsUser);
+router.get('/getSuscriptionsPyme/:id',SuscriptionController.getSuscriptionsPyme);
 //rutas para inversiones
 router.post('/saveInvestment',InvestmentController.saveInvestment);
-router.get('/getInvestment:id',InvestmentController.getInvestment);
-router.get('/getInvestmentUser:id',InvestmentController.getInvestmentsUser);
-router.get('/getInvestmentsPyme:id',InvestmentController.getInvestmentsPyme);
+router.get('/getInvestment/:id',InvestmentController.getInvestment);
+router.get('/getInvestmentUser/:id',InvestmentController.getInvestmentsUser);
+router.get('/getInvestmentsPyme/:id',InvestmentController.getInvestmentsPyme);
 //rutas para transacciones
 router.post('/saveTransaction',TransactionController.saveTransaction);
 router.get('/getTransaction/:id',TransactionController.getTransaction);

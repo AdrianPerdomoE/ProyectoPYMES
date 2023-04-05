@@ -10,16 +10,12 @@ var suscriptionController = {
         suscription.charge = params.charge;
         suscription.creationDate = Date();
         
-        suscription.save((err, suscriptionSaved) => {
-            if (err) {
-                return res.status(500).send({ msg: 'Error in petition' })
-            }
+        suscription.save().then((suscriptionSaved) => {
             if (!suscriptionSaved) {
                 return res.status(404).send({ msg: 'Suscription could not be saved' })
             }
             return res.status(200).send({ msg: 'Suscription created successfully', SUSCRIPTION: suscriptionSaved });
-        })
-
+        });
     },
     getSuscription: function (req, res)
     
@@ -29,23 +25,17 @@ var suscriptionController = {
         if (!id) {
             return req.status(404).send({ message: 'Id was not provided' })
         }
-        Suscription.findById(id ,(err, suscription) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error at returning the data.' });
-            }
-
-            if (!suscription) return req.status(404).send({ message: 'The suscription dont exist' })
-
-            return res.status(200).send({ SUSCRIPTION: suscription });
-
-        })
+        Suscription.findById(id).then(
+            (suscription) => {
+                if (!suscription) return req.status(404).send({ message: 'The suscription dont exist' })
+    
+                return res.status(200).send({ SUSCRIPTION: suscription });
+    
+            });
     },
     getSuscriptionsUser: function (req, res){
         var suscriptor_id = req.params.id;
-        Suscription.find({suscriptor_id:suscriptor_id}).exec((err, suscriptions) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the suscriptions" });
-            }
+        Suscription.find({suscriptor_id:suscriptor_id}).exec().then((suscriptions) => {
             if (!suscriptions) {
                 return res.status(404).send({ msg: "There is not suscriptions" });
             }
@@ -54,10 +44,7 @@ var suscriptionController = {
     },
     getSuscriptionsPyme: function (req, res){
         var pyme_id = req.params.id;
-        Suscription.find({pyme_id:pyme_id}).exec((err, suscriptions) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the suscriptions" });
-            }
+        Suscription.find({pyme_id:pyme_id}).exec().then((suscriptions) => {
             if (!suscriptions) {
                 return res.status(404).send({ msg: "There is not suscriptions" });
             }
