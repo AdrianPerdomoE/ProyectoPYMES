@@ -53,7 +53,7 @@ router.get('/getSuscriptionsPyme/:id',SuscriptionController.getSuscriptionsPyme)
 //rutas para inversiones
 router.post('/saveInvestment',InvestmentController.saveInvestment);
 router.get('/getInvestment/:id',InvestmentController.getInvestment);
-router.get('/getInvestmentUser/:id',InvestmentController.getInvestmentsUser);
+router.get('/getInvestmentsUser/:id',InvestmentController.getInvestmentsUser);
 router.get('/getInvestmentsPyme/:id',InvestmentController.getInvestmentsPyme);
 //rutas para transacciones
 router.post('/saveTransaction',TransactionController.saveTransaction);

@@ -10,15 +10,12 @@ var investmentController = {
         investment.invested = params.invested;
         investment.creationDate = Date();
         
-        investment.save((err, investmentSaved) => {
-            if (err) {
-                return res.status(500).send({ msg: 'Error in petition' })
-            }
+        investment.save().then((investmentSaved) => {
             if (!investmentSaved) {
                 return res.status(404).send({ msg: 'Investment could not be saved' })
             }
             return res.status(200).send({ msg: 'Investment created successfully',INVESTMENT: investmentSaved });
-        })
+        });
 
     },
     getInvestment: function (req, res)
@@ -29,23 +26,16 @@ var investmentController = {
         if (!id) {
             return req.status(404).send({ message: 'Id was not provided' })
         }
-        Investment.findById(id ,(err, investment) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error at returning the data.' });
-            }
-
+        Investment.findById(id).then((investment) => {
             if (!investment) return req.status(404).send({ message: 'The investment dont exist' })
 
             return res.status(200).send({ INVESTMENT: investment });
 
-        })
+        });
     },
     getInvestmentsUser: function (req, res){
         var investor_id = req.params.id;
-        Investment.find({investor_id:investor_id}).exec((err, investments) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the investments" });
-            }
+        Investment.find({investor_id:investor_id}).exec().then((investments) => {
             if (!investments) {
                 return res.status(404).send({ msg: "There is not investments" });
             }
@@ -54,10 +44,7 @@ var investmentController = {
     },
     getInvestmentsPyme: function (req, res){
         var pyme_id = req.params.id;
-        Investment.find({pyme_id:pyme_id}).exec((err, investments) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the investments" });
-            }
+        Investment.find({pyme_id:pyme_id}).exec().then((investments) => {
             if (!investments) {
                 return res.status(404).send({ msg: "There is not investments" });
             }
