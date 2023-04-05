@@ -7,6 +7,7 @@ var productController = {
         let product = new Product();
         var params = req.body;
         product.name = params.name;
+        product.pyme_id = params.pyme_id
         product.price = params.price;
         product.stock = params.stock;
         product.description = params.description;
@@ -32,9 +33,6 @@ var productController = {
     },
     getProducts: (req, res) => {
         Product.find({}).exec().then((products) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the products" });
-            }
             if (!products) {
                 return res.status(404).send({ msg: "There is not products" });
             }
@@ -54,10 +52,7 @@ var productController = {
         var product_id = req.params.id;
         var upData = req.body;
         upData.updateDate = new Date();        
-        Product.findByIdAndUpdate(product_id, upData, { new: true }, (err, productUpDated) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during uptdate" });
-            }
+        Product.findByIdAndUpdate(product_id, upData, { new: true }).then((productUpDated) => {
             if (!productUpDated) {
                 return res.status(404).send({ msg: "Product could no be found" });
             }
@@ -115,9 +110,6 @@ var productController = {
     getProductByName: (req, res) => {
         let productName = new RegExp(`${req.params.searchBy}`, "i")
         Product.find({ name: productName }).exec().then((products) => {
-            if (err) {
-                return res.status(500).send({ msg: "There has been an error loading the products" });
-            }
             if (!products) {
                 return res.status(404).send({ msg: "There is not products" });
             }

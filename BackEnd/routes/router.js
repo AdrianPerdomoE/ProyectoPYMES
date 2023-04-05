@@ -35,8 +35,8 @@ router.get("/GetProduct/:id", ProductController.getProduct);
 router.get("/GetProducts", ProductController.getProducts);
 router.put("/UpdateProduct/:id", ProductController.updateProduct);
 router.delete("/DeleteProduct/:id", ProductController.deleteProduct);
-router.post("/UploadImagen/:id", multipartMiddleWare, ProductController.uploadImagen);
-router.get("/GetImagen/:image", ProductController.getImageFile);
+router.post("/UploadImage/:id", multipartMiddleWare, ProductController.uploadImagen);
+router.get("/GetImage/:image", ProductController.getImageFile);
 router.get("/getProductByName/:searchBy", ProductController.getProductByName);
 router.get("/getProductsById/:id", ProductController.getProductsById);
 //rutas para las ordenes
