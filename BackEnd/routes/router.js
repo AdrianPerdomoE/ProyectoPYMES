@@ -8,7 +8,7 @@ var multipartMiddleWare = multipart({ uploadDir: "./archivos" });
 
 //importacion de controladores 
 var ProductController = require('../controller/ProductController')
-var ClientController = require('../controller/ClientController')
+var UserController = require('../controller/UserController')
 var PymeController = require('../controller/PymeController')
 var PymeController = require('../controller/PymeController')
 var OrderController = require('../controller/OrderController')
@@ -16,18 +16,18 @@ var WalletController = require('../controller/WalletController')
 var TransactionController = require('../controller/TransactionController')
 var SuscriptionController = require('../controller/SuscriptionController')
 var InvestmentController = require('../controller/InvestmentController')
-//rutas para cliente
-router.post('/saveClient',ClientController.saveClient);
-router.get('/getClient/:id',ClientController.getClient);
-router.get('/getExistence/:id',ClientController.getExistence);
-router.put('/updateClient/:id',ClientController.updateClient);
-router.put('/updateKart/:id',ClientController.updateKart);
+//rutas para User
+router.post('/saveUser',UserController.saveUser);
+router.get('/getUser/:id',UserController.getUser);
+router.get('/getExistenceUser/:id',UserController.getExistence);
+router.put('/updateUser/:id',UserController.updateUser);
+router.put('/updateKart/:id',UserController.updateKart);
 //rutas para PYMES
 router.post('/savePyme',PymeController.savePyme);
 router.get('/getPyme/:id',PymeController.getPyme);
 router.get('/getPymes',PymeController.getPymes);
 router.get('/getPymesByCategory/:searchBy',PymeController.getPymesByCategory);
-router.get('/getExistence/:id',PymeController.getExistence);
+router.get('/getExistencePyme/:id',PymeController.getExistence);
 router.put('/updatePyme/:id',PymeController.updatePyme);
 //rutas para producto
 router.post("/SaveProduct", ProductController.saveProduct);
@@ -48,12 +48,12 @@ router.get('/getWallet/:id',WalletController.getWallet);
 //rutas para suscripciones
 router.post('/saveSuscription',SuscriptionController.saveSuscription);
 router.get('/getSuscription:id',SuscriptionController.getSuscription);
-router.get('/getSuscriptionsClient:id',SuscriptionController.getSuscriptionsClient);
+router.get('/getSuscriptionsUser:id',SuscriptionController.getSuscriptionsUser);
 router.get('/getSuscriptionsPyme:id',SuscriptionController.getSuscriptionsPyme);
 //rutas para inversiones
 router.post('/saveInvestment',InvestmentController.saveInvestment);
 router.get('/getInvestment:id',InvestmentController.getInvestment);
-router.get('/getInvestmentClient:id',InvestmentController.getInvestmentsClient);
+router.get('/getInvestmentUser:id',InvestmentController.getInvestmentsUser);
 router.get('/getInvestmentsPyme:id',InvestmentController.getInvestmentsPyme);
 //rutas para transacciones
 router.post('/saveTransaction',TransactionController.saveTransaction);

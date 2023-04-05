@@ -1,7 +1,7 @@
 "use strict"
 var Pyme = require('../models/Pyme');
 var Wallet = require('../models/Wallet');
-const { pageStyle } = require('../models/pageStyle');
+
 
 var PymeController = {
     savePyme: (req, res) =>
@@ -13,12 +13,10 @@ var PymeController = {
         pyme.password = params.password;
         pyme.category = params.category;
         pyme.creationDate = new Date();
-        pyme.pageStyle = new pageStyle();
+        pyme.pageStyle = {};
 
-        pyme.save((err, pymeSaved) => {
-            if (err) {
-                return res.status(500).send({ msg: 'Error in petition' })
-            }
+        pyme.save().then((pymeSaved) => {
+            
             if (!pymeSaved) {
                 return res.status(404).send({ msg: 'Pyme could not be saved' })
             }
@@ -26,12 +24,10 @@ var PymeController = {
             wallet.owner_id = pymeSaved._id;
             wallet.money = 0;
 
-            wallet.save((err, walletSaved) => {
+            wallet.save().then((walletSaved) => {
                 if(walletSaved) return res.status(200).send({ msg: 'Pyme created successfully', PYME: pymeSaved });
-            })
-            
-        })
-
+            });
+        });
     },
     getPyme: function (req, res)
     
@@ -39,24 +35,18 @@ var PymeController = {
         var id = req.params.id;
 
         if (!id) {
-            return req.status(404).send({ message: 'Id was not provided' })
+            return res.status(404).send({ message: 'Id was not provided' })
         }
-        Pyme.findById(id ,(err, pyme) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error at returning the data.' });
-            }
-
-            if (!pyme) return req.status(404).send({ message: 'The pyme dont exist' })
+        Pyme.findById(id).then((pyme) => {
+           
+            if (!pyme) return res.status(404).send({ message: 'The pyme dont exist' })
 
             return res.status(200).send({ PYME: pyme });
 
-        })
+        });
     },
     getPymes: function (req, res){
-        Pyme.find({}).exec((err, pymes) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the pymes" });
-            }
+        Pyme.find({}).exec().then((pymes) => {
             if (!pymes) {
                 return res.status(404).send({ msg: "There is not pymes" });
             }
@@ -65,10 +55,7 @@ var PymeController = {
     },
     getPymesByCategory: function (req, res){
         let pymeCategory = new RegExp(`${req.params.searchBy}`, "i")
-        Pyme.find({category:pymeCategory}).exec((err, pymes) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the pymes" });
-            }
+        Pyme.find({category:pymeCategory}).exec().then((pymes) => {
             if (!pymes) {
                 return res.status(404).send({ msg: "There is not pymes" });
             }
@@ -79,29 +66,24 @@ var PymeController = {
     
     {
         var id = req.params.id;
-        Pyme.exists({id:id}).exec((err, Result) => {
-            if (err) return res.status(500).send({ message: 'Error during verifying the data ' })
-
+        Pyme.exists({_id:id}).exec().then((Result) => {
             if (!Result) return res.status(200).send({Exist:false})
-
             return res.status(200).send({Exist:true});
-        })
-
+        });
     },
     updatePyme: function (req, res)
     
     {
         var id = req.params.id;
         var update = req.body;
-        Pyme.findByIdAndUpdate(id, update, { new: true }, (err, pymeUpdated) => {
-            if (err) return res.status(500).send({ message: 'Error al actualizar' });
-
+        Pyme.findByIdAndUpdate(id, update, { new: true }).then((pymeUpdated) => {
+          
             if (!pymeUpdated) return res.status(404).send({ message: 'No se ha podido actualizar' });
 
             return res.status(200).send({
                 PYME: pymeUpdated
             })
-        })
+        });
     }
 }
 module.exports = PymeController

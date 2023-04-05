@@ -7,7 +7,7 @@ var Pyme = Schema({
     name: String,
     category: String,
     password: String,
-    pageStyle: mongoose.Types.Subdocument,
+    pageStyle: Object,
     creationDate: Date
 });
 

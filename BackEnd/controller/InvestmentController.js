@@ -40,7 +40,7 @@ var investmentController = {
 
         })
     },
-    getInvestmentsClient: function (req, res){
+    getInvestmentsUser: function (req, res){
         var investor_id = req.params.id;
         Investment.find({investor_id:investor_id}).exec((err, investments) => {
             if (err) {

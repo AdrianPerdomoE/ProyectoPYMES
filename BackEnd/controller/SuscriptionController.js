@@ -40,7 +40,7 @@ var suscriptionController = {
 
         })
     },
-    getSuscriptionsClient: function (req, res){
+    getSuscriptionsUser: function (req, res){
         var suscriptor_id = req.params.id;
         Suscription.find({suscriptor_id:suscriptor_id}).exec((err, suscriptions) => {
             if (err) {

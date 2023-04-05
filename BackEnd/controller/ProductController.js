@@ -14,10 +14,7 @@ var productController = {
         product.creationDate = Date();
         product.updateDate = Date();
         product.image = null;
-        product.save((err, productStored) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error at petition" });
-            }
+        product.save().then((productStored) => {
             if (!productStored) {
                 return res.status(404).send({ msg: "Product could not be saved" });
             }
@@ -26,10 +23,7 @@ var productController = {
     },
     getProduct: (req, res) => {
         var product_id = req.params.id;
-        Product.findById(product_id, (err, product) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during returning the product" });
-            }
+        Product.findById(product_id).then((product) => {
             if (!product) {
                 return res.status(404).send({ msg: "The product dont exist" });
             }
@@ -37,7 +31,7 @@ var productController = {
         });
     },
     getProducts: (req, res) => {
-        Product.find({}).exec((err, products) => {
+        Product.find({}).exec().then((products) => {
             if (err) {
                 return res.status(500).send({ msg: "Error during getting the products" });
             }
@@ -49,10 +43,7 @@ var productController = {
     },
     getProductsById: (req, res) => {
         var id = req.params.id;
-        Product.find({pyme_id : id}).exec((err, products) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the products" });
-            }
+        Product.find({pyme_id : id}).exec().then((products) => {
             if (!products) {
                 return res.status(404).send({ msg: "There is no products" });
             }
@@ -62,6 +53,7 @@ var productController = {
     updateProduct: (req, res) => {
         var product_id = req.params.id;
         var upData = req.body;
+        upData.updateDate = new Date();        
         Product.findByIdAndUpdate(product_id, upData, { new: true }, (err, productUpDated) => {
             if (err) {
                 return res.status(500).send({ msg: "Error during uptdate" });
@@ -74,10 +66,7 @@ var productController = {
     },
     deleteProduct: (req, res) => {
         var product_id = req.params.id;
-        Product.findByIdAndRemove(product_id, (err, productDeleted) => {
-            if (err) {
-                return res.status(500).send({ msg: "There has been an error during deleting the product" });
-            }
+        Product.findByIdAndRemove(product_id).then((productDeleted) => {
             if (!productDeleted) {
                 return res.status(404).send({ msg: "Product could not be found" });
             }
@@ -94,10 +83,7 @@ var productController = {
             var extSplit = fileName.split("\.");
             var fileExt = extSplit[1];
             if (fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif") {
-                Product.findByIdAndUpdate(product_id, { imagen: fileName }, { new: true }, (err, productUpdated) => {
-                    if (err) {
-                        return res.status(500).send({ msg: "The image was not upload" });
-                    }
+                Product.findByIdAndUpdate(product_id, { imagen: fileName }, { new: true }).then((productUpdated) => {
                     if (!productUpdated) {
                         return res.status(404).send({ msg: "The image dont exist" });
                     }
@@ -128,7 +114,7 @@ var productController = {
     },
     getProductByName: (req, res) => {
         let productName = new RegExp(`${req.params.searchBy}`, "i")
-        Product.find({ name: productName }).exec((err, products) => {
+        Product.find({ name: productName }).exec().then((products) => {
             if (err) {
                 return res.status(500).send({ msg: "There has been an error loading the products" });
             }
