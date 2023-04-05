@@ -58,7 +58,7 @@ router.get('/getInvestmentsPyme/:id',InvestmentController.getInvestmentsPyme);
 //rutas para transacciones
 router.post('/saveTransaction',TransactionController.saveTransaction);
 router.get('/getTransaction/:id',TransactionController.getTransaction);
-router.get('/getTransaction/:id',TransactionController.getTransaction);
+router.get('/getTransactions/:id',TransactionController.getTransactions);
 // Se exporta el modulo para importarlo en app
 
 module.exports = router;

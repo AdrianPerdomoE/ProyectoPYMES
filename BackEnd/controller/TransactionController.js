@@ -13,19 +13,16 @@ var TransactionController = {
         transaction.detail = params.detail;
         transaction.creationDate = Date();
         
-        transaction.save((err, TransactionSaved) => {
-            if (err) {
-                return res.status(500).send({ msg: 'Error in petition' })
-            }
-            if (!TransactionSaved) {
-                return res.status(404).send({ msg: 'Transaction could not be saved' })
-            }
-           
-            return res.status(200).send({ msg: 'Transaction created successfully', TRANSACTION: TransactionSaved });
-            
-            
-        })
-
+        transaction.save().then(
+            (TransactionSaved) => {
+                if (!TransactionSaved) {
+                    return res.status(404).send({ msg: 'Transaction could not be saved' })
+                }
+               
+                return res.status(200).send({ msg: 'Transaction created successfully', TRANSACTION: TransactionSaved });
+                
+                
+            });
     },
     getTransaction: function (req, res)
     
@@ -35,23 +32,16 @@ var TransactionController = {
         if (!id) {
             return req.status(404).send({ message: 'Id was not provided' })
         }
-        Transaction.findById(id ,(err, transaction) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error at returning the data.' });
-            }
-
-            if (!transaction) return req.status(404).send({ message: 'The transaction dont exist' })
+        Transaction.findById(id).then((transaction) => {
+            if (!transaction) return res.status(404).send({ message: 'The transaction dont exist' })
 
             return res.status(200).send({ TRANSACTION: transaction });
 
-        })
+        }); 
     },
     getTransactions: function (req, res){
         var wallet_id = req.params.id;
-        Transaction.find({wallet_id:wallet_id}).exec((err, Transactions) => {
-            if (err) {
-                return res.status(500).send({ msg: "Error during getting the Transactions" });
-            }
+        Transaction.find({wallet_id:wallet_id}).exec().then((Transactions) => {
             if (!Transactions) {
                 return res.status(404).send({ msg: "There is not Transactions" });
             }
