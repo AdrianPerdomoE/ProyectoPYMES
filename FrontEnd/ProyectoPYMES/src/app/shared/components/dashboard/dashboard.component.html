@@ -1,0 +1,84 @@
+<ul
+  class="nav nav-pills nav-fill gap-2 p-2 opacity-80"
+  role="tablist"
+  style="
+    background-color: rgba(62, 60, 33, 255);
+    --bs-nav-link-color: var(--bs-white);
+    --bs-nav-pills-link-active-color: var(--bs-black);
+    --bs-nav-pills-link-active-bg: var(--bs-white);
+  "
+>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active rounded-5"
+      data-bs-toggle="tab"
+      type="button"
+      role="tab"
+      aria-selected="true"
+    >
+      Inicio
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link rounded-5"
+      
+      data-bs-toggle="tab"
+      type="button"
+      role="tab"
+      aria-selected="false"
+    >
+      Restaurantes
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link rounded-5"
+
+      data-bs-toggle="tab"
+      type="button"
+      role="tab"
+      aria-selected="false"
+    >
+      Mercados
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link rounded-5"
+     
+      data-bs-toggle="tab"
+      type="button"
+      role="tab"
+      aria-selected="false"
+    >
+      Tiendas
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link rounded-5"
+    
+      data-bs-toggle="tab"
+      type="button"
+      role="tab"
+      aria-selected="false"
+      [routerLink]="'Register'" 
+      [routerLinkActive]="['active']"
+    >
+      Usuario
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link rounded-5"
+    
+      data-bs-toggle="tab"
+      type="button"
+      role="tab"
+      aria-selected="false"
+    >
+      Carrito
+    </button>
+  </li>
+</ul>
