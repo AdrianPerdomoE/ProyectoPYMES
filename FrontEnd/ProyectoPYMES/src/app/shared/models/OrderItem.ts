@@ -3,7 +3,8 @@ export class OrderItem{
         public _id:string,
         public order_id: string,
         public product_id: string,
-        public amount: Number
+        public amount: Number,
+        public storeName: string
     ){
       
     }
