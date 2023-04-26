@@ -4,36 +4,33 @@ import { Sesion } from '../models/Sesion';
 import { Pyme } from '../models/Pyme';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class SesionServiceService {
+export class SesionService {
+  constructor() {}
 
-  constructor() { }
-
-  logSesion(logger: User|Pyme):void {
-    let newSesion = new Sesion(logger)
-    let sesionString = JSON.stringify(newSesion)
-    sessionStorage.setItem('SESION', sesionString)
+  logSesion(logger: User | Pyme): void {
+    let newSesion = new Sesion(logger);
+    let sesionString = JSON.stringify(newSesion);
+    sessionStorage.setItem('SESION', sesionString);
   }
-  logOut():void {
+  logOut(): void {
     sessionStorage.removeItem('SESION');
   }
 
-  confirmOpenSesion():Boolean {
-    let sesionString = sessionStorage.getItem('SESION')
+  confirmOpenSesion(): Boolean {
+    let sesionString = sessionStorage.getItem('SESION');
     if (sesionString) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
-  getCurrentUser():User|undefined|Pyme {
-    let sesionString = sessionStorage.getItem('SESION')
+  getCurrentUser(): User | undefined | Pyme {
+    let sesionString = sessionStorage.getItem('SESION');
     if (sesionString) {
-      let logger:Sesion = JSON.parse(sesionString)
-      return logger.CurrentSesion
+      let logger: Sesion = JSON.parse(sesionString);
+      return logger.CurrentSesion;
     }
-    return undefined
-
-  } 
+    return undefined;
+  }
 }
-

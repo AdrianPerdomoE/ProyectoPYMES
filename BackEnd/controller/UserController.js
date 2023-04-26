@@ -45,6 +45,22 @@ var UserController = {
 
         })
     },
+    getKart: function (req, res)
+    
+    {
+        var id = req.params.id;
+
+        if (!id) {
+            return res.status(404).send({ message: 'Id was not provided' })
+        }
+        User.findById(id).then((user) => {
+
+            if (!user) return res.status(404).send({ message: 'The user dont exist' })
+
+            return res.status(200).send({ KART: user.shoppingKart });
+
+        })
+    },
     getExistence: function (req, res)
     
     {
