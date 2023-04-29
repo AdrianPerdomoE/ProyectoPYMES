@@ -7,6 +7,7 @@ export class Pyme {
     public category: String,
     public pageStyle: PageStyle,
     public creationDate: Date,
-    public password?: String
+    public password?: String,
+    public email?: string
   ) {}
 }

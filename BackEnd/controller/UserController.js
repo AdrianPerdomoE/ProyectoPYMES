@@ -10,6 +10,7 @@ var UserController = {
         var params = req.body;
         user.name = params.name;
         user.password = params.password;
+        user.email = params.email;
         user.shoppingKart = 
         {toPay:0,
         items: [],
@@ -65,7 +66,7 @@ var UserController = {
     
     {
         var id = req.params.id;
-        User.exists({_id:id}).exec().then((Result) => {
+        User.find({email:id}).exec().then((Result) => {
             if (!Result) return res.status(200).send({Exist:false})
 
             return res.status(200).send({Exist:true});
@@ -100,6 +101,22 @@ var UserController = {
             })
         });
     }
-    
+    ,
+    confirmPassword: function (req, res) {
+        let email = req.body.email
+        let password = req.body.password
+
+        User.findOne({email:email}).exec().then((user)=>
+        {if (!user) return res.status(404).send({ message: 'No hay usuarios registrados' })
+            
+            return res.status(200).send({ passwordIsCorrect:user.password == password })
+        }).catch((err)=>{
+                if (err) return res.status(500).send({ message: 'Error al devolver los datos' })
+            })  
+           
+
+            
+        
+    }
 }
 module.exports = UserController

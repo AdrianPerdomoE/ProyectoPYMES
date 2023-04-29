@@ -8,7 +8,8 @@ var Pyme = Schema({
     category: String,
     password: String,
     pageStyle: Object,
-    creationDate: Date
+    creationDate: Date,
+    email:String
 });
 
 module.exports = mongoose.model("Pyme", Pyme);

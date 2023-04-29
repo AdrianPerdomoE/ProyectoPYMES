@@ -66,7 +66,7 @@ var PymeController = {
     
     {
         var id = req.params.id;
-        Pyme.exists({_id:id}).exec().then((Result) => {
+        Pyme.find({email:id}).exec().then((Result) => {
             if (!Result) return res.status(200).send({Exist:false})
             return res.status(200).send({Exist:true});
         });
@@ -84,6 +84,22 @@ var PymeController = {
                 PYME: pymeUpdated
             })
         });
+    },
+    confirmPassword: function (req, res) {
+        let email = req.body.email
+        let password = req.body.password
+
+        Pyme.findOne({email:email}).exec().then((pyme)=>
+        {if (!pyme) return res.status(404).send({ message: 'No hay usuarios registrados' })
+            
+            return res.status(200).send({ passwordIsCorrect:pyme.password == password })
+        }).catch((err)=>{
+                if (err) return res.status(500).send({ message: 'Error al devolver los datos' })
+            })  
+           
+
+            
+        
     }
 }
 module.exports = PymeController

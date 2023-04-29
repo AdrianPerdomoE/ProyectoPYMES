@@ -23,8 +23,10 @@ router.get('/getExistenceUser/:id',UserController.getExistence);
 router.put('/updateUser/:id',UserController.updateUser);
 router.put('/updateKart/:id',UserController.updateKart);
 router.get('getKart/:id',UserController.getKart)
+router.post('/confirmPassword', serController.confirmPassword);
 //rutas para PYMES
 router.post('/savePyme',PymeController.savePyme);
+router.post('/confirmPasswordPyme', PymeController.confirmPassword);
 router.get('/getPyme/:id',PymeController.getPyme);
 router.get('/getPymes',PymeController.getPymes);
 router.get('/getPymesByCategory/:searchBy',PymeController.getPymesByCategory);

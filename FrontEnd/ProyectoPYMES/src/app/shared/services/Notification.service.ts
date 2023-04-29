@@ -5,7 +5,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2'
 @Injectable({
   providedIn: 'root'
 })
-export class NotificacionesService {
+export class NotificationService {
 
   constructor(
     private toastr: ToastrService,

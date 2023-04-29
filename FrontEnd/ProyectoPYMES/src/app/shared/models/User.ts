@@ -4,6 +4,7 @@ export class User {
     public _id: string,
     public name: String,
     public shoppingKart: Kart,
-    public password?: String
+    public password?: String,
+    public email?: string
   ) {}
 }
