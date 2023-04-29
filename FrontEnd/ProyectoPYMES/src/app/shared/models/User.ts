@@ -3,8 +3,8 @@ export class User {
   constructor(
     public _id: string,
     public name: String,
-    public shoppingKart: Kart,
     public password?: String,
-    public email?: string
+    public email?: string,
+    public shoppingKart?: Kart
   ) {}
 }

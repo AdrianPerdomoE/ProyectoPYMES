@@ -31,7 +31,15 @@
                     type="email"
                     class="form-control"
                     placeholder="Tu correo electronico"
+                    #Email
+                    name="email"
+                    [(ngModel)]="auxUser.email"
+                    (blur)="verifyEmail(auxUser.email ? auxUser.email : '')"
+                    (focus)="invalidEmail = false"
                   />
+                  <div class="msg-error" [hidden]="!invalidEmail">
+                    El correo electrónico ingresado es inválido.
+                  </div>
                 </div>
               </div>
               <div class="d-flex flex-row align-items-center mb-4">
@@ -51,7 +59,10 @@
                   <input
                     type="text"
                     class="form-control"
+                    name="name"
+                    #name
                     placeholder="Tu nickname"
+                    [(ngModel)]="auxUser.name"
                   />
                 </div>
               </div>
@@ -70,7 +81,13 @@
                   />
                 </svg>
                 <div class="form-outline flex-fill mb-0">
-                  <input type="password" class="form-control" />
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    #password
+                    [(ngModel)]="auxUser.password"
+                  />
                 </div>
               </div>
 
@@ -78,17 +95,29 @@
                 <input
                   class="form-check-input me-2"
                   type="checkbox"
-                  value=""
+                  value="true"
+                  #check
                   id="form2Example3c"
+                  (click)="agree(check.checked)"
                 />
-                <label class="form-check-label" for="form2Example3">
+                <label class="form-check-label">
                   I agree all statements in
                   <a href="#!">Terms of service</a>
                 </label>
               </div>
 
               <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                <button type="button" class="btn btn-primary btn-lg">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  [disabled]="
+                    invalidEmail ||
+                    !name.value ||
+                    !password.value ||
+                    !check.checked
+                  "
+                  (click)="onRegistry()"
+                >
                   Registar
                 </button>
               </div>

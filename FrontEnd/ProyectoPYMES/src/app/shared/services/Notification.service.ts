@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import Swal, { SweetAlertIcon } from 'sweetalert2'
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'

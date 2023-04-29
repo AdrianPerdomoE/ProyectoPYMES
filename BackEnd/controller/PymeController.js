@@ -66,7 +66,7 @@ var PymeController = {
     
     {
         var id = req.params.id;
-        Pyme.find({email:id}).exec().then((Result) => {
+        Pyme.findOne({email:id}).exec().then((Result) => {
             if (!Result) return res.status(200).send({Exist:false})
             return res.status(200).send({Exist:true});
         });
