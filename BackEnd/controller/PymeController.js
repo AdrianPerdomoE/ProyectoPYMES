@@ -88,11 +88,10 @@ var PymeController = {
     confirmPassword: function (req, res) {
         let email = req.body.email
         let password = req.body.password
-
         Pyme.findOne({email:email}).exec().then((pyme)=>
-        {if (!pyme) return res.status(404).send({ message: 'No hay usuarios registrados' })
-            
-            return res.status(200).send({ passwordIsCorrect:pyme.password == password })
+        {if (!pyme) return res.status(404).send({ message: 'No hay es un email correcto' })
+            let correct = pyme.password == password;
+            return res.status(200).send({ passwordIsCorrect: correct, LOGGED:correct?pyme:null,type:"Pyme"});
         }).catch((err)=>{
                 if (err) return res.status(500).send({ message: 'Error al devolver los datos' })
             })  

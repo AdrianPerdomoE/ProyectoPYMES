@@ -10,4 +10,5 @@ export class Pyme {
     public password?: String,
     public email?: string
   ) {}
+  
 }

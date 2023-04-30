@@ -107,9 +107,9 @@ var UserController = {
         let password = req.body.password
 
         User.findOne({email:email}).exec().then((user)=>
-        {if (!user) return res.status(404).send({ message: 'No hay usuarios registrados' })
-            
-            return res.status(200).send({ passwordIsCorrect:user.password == password })
+        {if (!user) return res.status(404).send({ message: 'No es un correo registrado' })
+        let correct = user.password == password;
+        return res.status(200).send({ passwordIsCorrect: correct,LOGGED:correct?user:null,type:"User"});
         }).catch((err)=>{
                 if (err) return res.status(500).send({ message: 'Error al devolver los datos' })
             })  

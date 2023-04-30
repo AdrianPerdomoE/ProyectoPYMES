@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [ClientViewComponent, RegisterComponent],
   imports: [
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule
   ],
 })
 export class AppClientModule {}

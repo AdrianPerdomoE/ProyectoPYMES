@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, ObservableInput, from } from 'rxjs';
-import { concatMap, filter } from 'rxjs/operators';
+import { Observable, iif, of } from 'rxjs';
+import { mergeMap} from 'rxjs/operators';
 import { User } from 'src/app/shared/models/User';
 import { NotificationService } from 'src/app/shared/services/Notification.service';
 import { PymeService } from 'src/app/shared/services/Pyme.service';
@@ -22,37 +22,34 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
   verifyEmail(email: string) {
-    let patron = new RegExp('^[a-z]+[a-z0-9._-]+@[a-z]+.[a-z.]{2,5}$');
+    let patron = new RegExp('^[a-z]+[a-z0-9._-]+@[a-z]+[.]+(\.[a-z]+)*(\.[a-z]{2,5})$');
     this.invalidEmail = !patron.test(email);
   }
   agree(checked: any) {}
   onRegistry() {
-    const returnTrue = (): ObservableInput<any> => {
-      return new Observable((observer) => {
-        return observer.next({ Exist: true });
-      });
+    const returnTrue = (): Observable<any> => {
+      return of({ Exist: true });
     };
-    from(
-      this._PymeService.emailExistence(
-        this.auxUser.email ? this.auxUser.email : ''
-      )
-    )
+
+    this._PymeService
+      .emailExistence(this.auxUser.email ? this.auxUser.email : '')
       .pipe(
-        filter((resultado) => resultado.Exist === false),
-        concatMap(() =>
-          this._UserService.emailExistence(
-            this.auxUser.email ? this.auxUser.email : ''
+        mergeMap((resultado) =>
+          iif(
+            () => resultado.Exist,
+            returnTrue(),
+            this._UserService.emailExistence(
+              this.auxUser.email ? this.auxUser.email : ''
+            )
           )
-        ),
-        filter((resultado) => resultado.Exist === true),
-        concatMap(() => returnTrue())
+        )
       )
       .subscribe((re: any) => {
-        console.log(1);
         if (re.Exist == false) {
           this._UserService.registerUser(this.auxUser).subscribe((resul) => {
             if (resul.USER) {
-              this._notificationService.enviarAlertaConfirmacion(
+              this._notificationService.enviarNotificacion(
+                'info',
                 'Registro',
                 'Su usuario ha sido creado correctamente'
               );
