@@ -7,8 +7,10 @@ export class Pyme {
     public category: String,
     public pageStyle: PageStyle,
     public creationDate: Date,
+    public logo:string,
     public password?: String,
-    public email?: string
+    public email?: string,
+    
   ) {}
   
 }

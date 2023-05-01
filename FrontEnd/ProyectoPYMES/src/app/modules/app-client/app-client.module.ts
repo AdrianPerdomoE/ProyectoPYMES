@@ -6,10 +6,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { CardPymeComponent } from './components/card-pyme/card-pyme.component';
+import { ListPymesComponent } from './components/list-pymes/list-pymes.component';
 
 
 @NgModule({
-  declarations: [ClientViewComponent, RegisterComponent],
+  declarations: [ClientViewComponent, RegisterComponent, HomeComponent, CardPymeComponent, ListPymesComponent],
   imports: [
     CommonModule,
     SharedModule,

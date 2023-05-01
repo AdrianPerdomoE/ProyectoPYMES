@@ -9,6 +9,7 @@ import { SesionService } from '../../services/Sesion.service';
 import { User } from '../../models/User';
 import { Sesion } from '../../models/Sesion';
 import { Pyme } from '../../models/Pyme';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private _PymeService: PymeService,
     private _UserService: UserService,
     private _notificationService: NotificationService,
-    private _sessionService: SesionService
+    private _sessionService: SesionService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -83,7 +85,8 @@ export class LoginComponent implements OnInit {
               re.LOGGED.name,
               re.LOGGED.category,
               re.LOGGED.pageStyle,
-              re.LOGGED.creationDate
+              re.LOGGED.creationDate,
+              re.LOGGED.logo
             );
           } else {
             session = new User(
@@ -96,6 +99,15 @@ export class LoginComponent implements OnInit {
           }
           console.log(typeof session);
           this._sessionService.logSesion(session);
+          this._notificationService.enviarAlerta('success',
+            'Inicio de sesión',
+            'Bienvenido ' + re.LOGGED.name
+          );
+          if (session instanceof User) {
+            this._router.navigate(['Home']);
+          } else {
+            this._router.navigateByUrl('/PYME_HOME');
+          }
         } else {
           this._notificationService.enviarAlerta(
             'warning',

@@ -29,6 +29,6 @@ export class ProductService {
   }
   getProductsOwner(owner: string): Observable<any> {
     let headers = new HttpHeaders().set("Content-Type", "application/json");
-    return this._http.get(`${this.url}GetProducts/${owner}`, { headers: headers });
+    return this._http.get(`${this.url}getProductsById/${owner}`, { headers: headers });
   }
 }

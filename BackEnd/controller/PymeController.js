@@ -14,6 +14,7 @@ var PymeController = {
         pyme.category = params.category;
         pyme.creationDate = new Date();
         pyme.pageStyle = {};
+        pyme.logo = 'Image_not_upload.jpg'
 
         pyme.save().then((pymeSaved) => {
             
@@ -96,9 +97,34 @@ var PymeController = {
                 if (err) return res.status(500).send({ message: 'Error al devolver los datos' })
             })  
            
-
-            
-        
+    }
+    ,
+    uploadImagen: (req, res) => {
+        var pyme_id = req.params.id;
+        var fileName = "Image_not_upload";
+        if (req.files) {
+            var filePath = req.files.image.path;
+            var fileSplit = filePath.split("\\");
+            var fileName = fileSplit[1];
+            var extSplit = fileName.split("\.");
+            var fileExt = extSplit[1];
+            if (fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif") {
+                Pyme.findByIdAndUpdate(pyme_id, { imagen: fileName }, { new: true }).then((pymeUpdated) => {
+                    if (!pymeUpdated) {
+                        return res.status(404).send({ msg: "The image dont exist" });
+                    }
+                    return res.status(200).send({ pyme: pymeUpdated });
+                });
+            }
+            else {
+                fs.unlink(filePath, (err) => {
+                    return res.status(200).send({ msg: "Extension is not valid" });
+                });
+            }
+        }
+        else {
+            return res.status(500).send({ msg: "files was not upload" });
+        }
     }
 }
 module.exports = PymeController

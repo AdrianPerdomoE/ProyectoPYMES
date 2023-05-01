@@ -32,6 +32,7 @@ router.get('/getPymes',PymeController.getPymes);
 router.get('/getPymesByCategory/:searchBy',PymeController.getPymesByCategory);
 router.get('/getExistencePyme/:id',PymeController.getExistence);
 router.put('/updatePyme/:id',PymeController.updatePyme);
+router.post("/UploadImagePyme/:id", multipartMiddleWare, PymeController.uploadImagen);
 //rutas para producto
 router.post("/SaveProduct", ProductController.saveProduct);
 router.get("/GetProduct/:id", ProductController.getProduct);
