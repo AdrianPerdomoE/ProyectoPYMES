@@ -6,7 +6,7 @@ import { ClientViewComponent } from './modules/app-client/pages/client-view/clie
 import { ClientGuard } from './shared/guards/Client.guard';
 import { RegisterComponent } from './modules/app-client/components/register/register.component';
 import { HomeComponent } from './modules/app-client/components/home/home.component';
-import { PymeViewComponent } from './modules/app-pymes/components/pyme-view/pyme-view.component';
+import { PymeDesignComponent } from './modules/app-pymes/components/pyme-design/pyme-design.component';
 
 const routes: Routes = [
   { path: 'PYME_HOME', component: PYMELogComponent, children: [] },
@@ -22,7 +22,7 @@ const routes: Routes = [
     children: [
       { path: 'Register', component: RegisterComponent },
       { path: 'Home', component: HomeComponent },
-      { path: 'Pyme/:name/:id', component: PymeViewComponent },
+      { path: 'Pyme/:name/:id', component: PymeDesignComponent },
     ],
   },
 ];

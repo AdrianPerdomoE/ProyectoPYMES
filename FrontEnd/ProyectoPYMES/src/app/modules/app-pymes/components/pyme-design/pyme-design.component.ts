@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
 
-
 @Component({
-  selector: 'app-pyme-view',
-  templateUrl: './pyme-view.component.html',
-  styleUrls: ['./pyme-view.component.css'],
+  selector: 'app-pyme-design',
+  templateUrl: './pyme-design.component.html',
+  styleUrls: ['./pyme-design.component.css']
 })
-export class PymeViewComponent implements OnInit {
+export class PymeDesignComponent implements OnInit {
   indice: string;
   id: string;
   productos = [];
@@ -28,4 +27,5 @@ export class PymeViewComponent implements OnInit {
       }
     });
   }
+
 }

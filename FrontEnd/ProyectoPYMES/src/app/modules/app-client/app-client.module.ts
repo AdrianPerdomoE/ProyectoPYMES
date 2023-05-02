@@ -10,15 +10,20 @@ import { HomeComponent } from './components/home/home.component';
 import { CardPymeComponent } from './components/card-pyme/card-pyme.component';
 import { ListPymesComponent } from './components/list-pymes/list-pymes.component';
 
-
 @NgModule({
-  declarations: [ClientViewComponent, RegisterComponent, HomeComponent, CardPymeComponent, ListPymesComponent],
+  declarations: [
+    ClientViewComponent,
+    RegisterComponent,
+    HomeComponent,
+    CardPymeComponent,
+    ListPymesComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
 })
 export class AppClientModule {}
