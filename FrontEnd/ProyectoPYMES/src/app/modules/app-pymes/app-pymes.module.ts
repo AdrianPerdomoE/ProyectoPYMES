@@ -15,8 +15,8 @@ import { PymeDesignComponent } from './components/pyme-design/pyme-design.compon
     CommonModule,
     SharedModule,
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
   ],
+  exports: [PymeDesignComponent],
 })
 export class AppPYMESModule {}

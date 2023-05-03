@@ -5,7 +5,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 @Component({
   selector: 'app-pyme-design',
   templateUrl: './pyme-design.component.html',
-  styleUrls: ['./pyme-design.component.css']
+  styleUrls: ['./pyme-design.component.css'],
 })
 export class PymeDesignComponent implements OnInit {
   indice: string;
@@ -22,10 +22,9 @@ export class PymeDesignComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProductsOwner(this.id).subscribe((response) => {
-      if (response.products) {
+      if (response.PRODUCTS) {
         this.productos = response.PRODUCTS;
       }
     });
   }
-
 }

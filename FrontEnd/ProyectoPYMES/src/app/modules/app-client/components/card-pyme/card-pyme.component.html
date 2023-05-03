@@ -1,5 +1,9 @@
 <div class="col">
-  <div class="card h-100" [routerLink]="['/Pyme/', pyme.name, pyme._id]">
+  <div
+    class="card h-100"
+    [routerLink]="['/Pyme/', pyme.name, pyme._id]"
+    style="cursor: pointer"
+  >
     <img [src]="pyme.logo" class="card-img-top" [alt]="pyme.name" />
     <div class="card-body">
       <div class="d-flex justify-content-between">
