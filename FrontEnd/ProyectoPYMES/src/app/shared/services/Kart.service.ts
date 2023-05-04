@@ -41,9 +41,12 @@ export class KartService {
   getCartSession(): Kart {
     let kartString = localStorage.getItem(Global.KART);
     if (kartString == null) {
-      return new Kart(0, [], 0);
+      let newKart = new Kart(0, [], 0);
+      this.saveCartSession(newKart);
+      return newKart;
     }
     let kart = JSON.parse(kartString);
+    this.carritoState.next(kart);
     return kart;
   }
 
@@ -112,6 +115,7 @@ export class KartService {
     this.carritoState.next(kartServer);
   }
   changeAmount(index: number, amount: number, kart: Kart): Kart {
+    kart.amountItems -= amount;
     let cartItem = kart.items.at(index);
     if (!cartItem) return kart;
     if (amount === 0) {
@@ -139,6 +143,7 @@ export class KartService {
     storeId: string,
     kart: Kart
   ): Kart {
+    kart.amountItems += amount;
     let result = this.lookForItem(product, kart);
     if (this.lookForItem(product, kart) >= 0) {
       kart.items[result].amount += amount;

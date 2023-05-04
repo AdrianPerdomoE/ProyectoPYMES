@@ -7,6 +7,7 @@ import { ClientGuard } from './shared/guards/Client.guard';
 import { RegisterComponent } from './modules/app-client/components/register/register.component';
 import { HomeComponent } from './modules/app-client/components/home/home.component';
 import { PymeDesignComponent } from './modules/app-pymes/components/pyme-design/pyme-design.component';
+import { ShoppingKartComponent } from './shared/components/shopping-kart/shopping-kart.component';
 
 const routes: Routes = [
   { path: 'PYME_HOME', component: PYMELogComponent, children: [] },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'Register', component: RegisterComponent },
       { path: 'Home', component: HomeComponent },
       { path: 'Pyme/:name/:id', component: PymeDesignComponent },
+      {path:'ShoppingKart',component:ShoppingKartComponent}
     ],
   },
 ];

@@ -9,11 +9,31 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ShoppingKartComponent } from './components/shopping-kart/shopping-kart.component';
+import { ShoppingKartItemComponent } from './components/shopping-kart-item/shopping-kart-item.component';
 
 @NgModule({
-  declarations: [DashboardComponent, TapToTopComponent, LoginComponent],
-  imports: [CommonModule, RouterModule, HttpClientModule, BrowserModule,ToastrModule.forRoot(),BrowserAnimationsModule,FormsModule],
+  declarations: [
+    DashboardComponent,
+    TapToTopComponent,
+    LoginComponent,
+    ShoppingKartComponent,
+    ShoppingKartItemComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    BrowserModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    FormsModule,
+  ],
   bootstrap: [],
-  exports: [DashboardComponent, TapToTopComponent,LoginComponent],
+  exports: [
+    DashboardComponent,
+    TapToTopComponent,
+    LoginComponent,
+  ],
 })
 export class SharedModule {}

@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+    <!-- Image -->
+    <div
+      class="bg-image hover-overlay hover-zoom ripple rounded"
+      data-mdb-ripple-color="light"
+    >
+      <img
+        src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp"
+        class="w-100"
+        alt="Blue Jeans Jacket"
+      />
+    </div>
+    <!-- Image -->
+  </div>
+
+  <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+    <!-- Data -->
+    <p><strong>Blue denim shirt</strong></p>
+    <p>Color: blue</p>
+    <p>Size: M</p>
+    <button
+      type="button"
+      class="btn btn-danger btn-sm me-1 mb-2"
+      data-mdb-toggle="tooltip"
+      title="Remove item"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="currentColor"
+        class="bi bi-trash-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
+        />
+      </svg>
+    </button>
+
+    <!-- Data -->
+  </div>
+
+  <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+    <!-- Quantity -->
+    <div class="d-flex mb-4" style="max-width: 300px">
+      <button
+        class="btn btn-primary px-3 me-2"
+        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-cart-dash-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.5 7h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z"
+          />
+        </svg>
+      </button>
+
+      <div class="form-outline">
+        <input
+          id="form1"
+          min="0"
+          name="quantity"
+          value="1"
+          type="number"
+          class="form-control"
+          [disabled]="true"
+        />
+        <label class="form-label" for="form1">Quantity</label>
+      </div>
+
+      <button
+        class="btn btn-primary px-3 ms-2"
+        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-cart-plus-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"
+          />
+        </svg>
+      </button>
+    </div>
+    <!-- Quantity -->
+
+    <!-- Price -->
+    <p class="text-start text-md-center">
+      <strong>$17.99</strong>
+    </p>
+    <!-- Price -->
+  </div>
+</div>
+<hr class="my-4" />
