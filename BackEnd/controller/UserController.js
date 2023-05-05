@@ -97,8 +97,9 @@ var UserController = {
             if (!userUpdated) return res.status(404).send({ message: 'Document could not be updated' });
 
             return res.status(200).send({
-                USER: userUpdated
+                KART: userUpdated.shoppingKart
             })
+            
         });
     }
     ,

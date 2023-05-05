@@ -22,7 +22,7 @@ router.get('/getUser/:id',UserController.getUser);
 router.get('/getExistenceUser/:id',UserController.getExistence);
 router.put('/updateUser/:id',UserController.updateUser);
 router.put('/updateKart/:id',UserController.updateKart);
-router.get('getKart/:id',UserController.getKart)
+router.get('/getKart/:id',UserController.getKart)
 router.post('/confirmPassword', UserController.confirmPassword);
 //rutas para PYMES
 router.post('/savePyme',PymeController.savePyme);

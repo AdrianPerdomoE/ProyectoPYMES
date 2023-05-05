@@ -35,7 +35,7 @@ export class KartService {
 
   getCartServer(id: string): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.get(`${this.url}getCart/${id}`, { headers: headers });
+    return this._http.get(`${this.url}getKart/${id}`, { headers: headers });
   }
 
   getCartSession(): Kart {
@@ -115,14 +115,13 @@ export class KartService {
     this.carritoState.next(kartServer);
   }
   changeAmount(index: number, amount: number, kart: Kart): Kart {
-    kart.amountItems -= amount;
     let cartItem = kart.items.at(index);
+
     if (!cartItem) return kart;
     if (amount === 0) {
       this.removeCartItem(index, kart);
-    } else if (amount > 100) {
-      cartItem.amount = 100;
     } else {
+      kart.amountItems += amount - cartItem?.amount;
       cartItem.amount = amount;
     }
     this.calculateNewToPay(kart);
@@ -130,6 +129,8 @@ export class KartService {
   }
 
   removeCartItem(index: number, kart: Kart): void {
+    let amount = kart.items.at(index)?.amount;
+    kart.amountItems -= amount ? amount : 0;
     kart.items = kart.items.filter((item, ind) => {
       return ind != index;
     });

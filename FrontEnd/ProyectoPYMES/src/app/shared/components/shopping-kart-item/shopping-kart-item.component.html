@@ -16,28 +16,11 @@
 
   <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
     <!-- Data -->
-    <p><strong>Blue denim shirt</strong></p>
-    <p>Color: blue</p>
-    <p>Size: M</p>
-    <button
-      type="button"
-      class="btn btn-danger btn-sm me-1 mb-2"
-      data-mdb-toggle="tooltip"
-      title="Remove item"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="25"
-        height="25"
-        fill="currentColor"
-        class="bi bi-trash-fill"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
-        />
-      </svg>
-    </button>
+    <p>
+      <strong>{{ kartItem.product.name }}</strong>
+    </p>
+    <p>Description: {{ kartItem.product.description }}</p>
+    <p>Pyme: {{ kartItem.storeName }}</p>
 
     <!-- Data -->
   </div>
@@ -45,10 +28,7 @@
   <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
     <!-- Quantity -->
     <div class="d-flex mb-4" style="max-width: 300px">
-      <button
-        class="btn btn-primary px-3 me-2"
-        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-      >
+      <button class="btn btn-primary px-3 me-2" (click)="change_amount(-1)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"
@@ -67,19 +47,17 @@
         <input
           id="form1"
           min="0"
+          max="{{ kartItem.product.stock }}"
           name="quantity"
-          value="1"
           type="number"
           class="form-control"
           [disabled]="true"
+          [(ngModel)]="kartItem.amount"
         />
         <label class="form-label" for="form1">Quantity</label>
       </div>
 
-      <button
-        class="btn btn-primary px-3 ms-2"
-        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-      >
+      <button class="btn btn-primary px-3 ms-2" (click)="change_amount(+1)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"
@@ -98,7 +76,7 @@
 
     <!-- Price -->
     <p class="text-start text-md-center">
-      <strong>$17.99</strong>
+      <strong>{{ kartItem.product.price | currency : "USD" }}</strong>
     </p>
     <!-- Price -->
   </div>

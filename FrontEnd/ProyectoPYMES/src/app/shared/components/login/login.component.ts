@@ -10,6 +10,7 @@ import { User } from '../../models/User';
 import { Sesion } from '../../models/Sesion';
 import { Pyme } from '../../models/Pyme';
 import { Router } from '@angular/router';
+import { KartService } from '../../services/Kart.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     private _UserService: UserService,
     private _notificationService: NotificationService,
     private _sessionService: SesionService,
-    private _router: Router
+    private _router: Router,
+    private _kartService: KartService
   ) {}
 
   ngOnInit(): void {}
@@ -99,12 +101,26 @@ export class LoginComponent implements OnInit {
           }
           console.log(typeof session);
           this._sessionService.logSesion(session);
-          this._notificationService.enviarAlerta('success',
+          this._notificationService.enviarAlerta(
+            'success',
             'Inicio de sesión',
             'Bienvenido ' + re.LOGGED.name
           );
           if (session instanceof User) {
-            this._router.navigate(['Home']);
+            this._kartService.getCartServer(session._id).subscribe((resp) => {
+              if (resp.KART) {
+                let sessionKart = this._kartService.getCartSession();
+                this._kartService.mixKarts(resp.KART);
+                this._kartService
+                  .updateCarServer(resp.KART)
+                  .subscribe((res) => {
+                    if (res.KART) {
+                      this._kartService.carritoState.next(res.KART);
+                      this._router.navigate(['Home']);
+                    }
+                  });
+              }
+            });
           } else {
             this._router.navigateByUrl('/PYME_HOME');
           }
