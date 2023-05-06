@@ -18,7 +18,7 @@ var TransactionController = {
                 if (!TransactionSaved) {
                     return res.status(404).send({ msg: 'Transaction could not be saved' })
                 }
-                Wallet.findByIdAndUpdate(params.wallet_id, {$sum:{money:params.value}}, { new: true }).then((walletUpdate) => {
+                Wallet.findByIdAndUpdate(params.wallet_id, {$inc:{money:params.value}}, { new: true }).then((walletUpdate) => {
                     if(walletUpdate){
                         return res.status(200).send({ msg: 'Transaction created successfully', TRANSACTION: TransactionSaved });
                     }

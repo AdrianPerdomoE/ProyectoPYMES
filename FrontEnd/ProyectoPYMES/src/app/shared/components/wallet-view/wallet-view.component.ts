@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SesionService } from '../../services/Sesion.service';
 import { WalletService } from '../../services/Wallet.Service';
 import { TransactionService } from '../../services/Transaction.service';
+import { NotificationService } from '../../services/Notification.service';
 
 @Component({
   selector: 'app-wallet-view',
@@ -19,7 +20,8 @@ export class WalletViewComponent implements OnInit {
     private modalService: NgbModal,
     private _sesionService: SesionService,
     private _walletService: WalletService,
-    private _transactionService: TransactionService
+    private _transactionService: TransactionService,
+    private _notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class WalletViewComponent implements OnInit {
         if (res.WALLET) {
           this.wallet = res.WALLET;
           this._transactionService
-            .getTransactions(this.wallet._id)
+            .getTransactions(res.WALLET._id)
             .subscribe((resp) => {
               if (resp.TRANSACTIONS) {
                 this.transaciones = resp.TRANSACTIONS;
@@ -50,7 +52,19 @@ export class WalletViewComponent implements OnInit {
       'Ingreso por recarga de billetera virtual',
       new Date()
     );
-    this._transactionService.registerTransaction(newTransaction);
+    this._transactionService
+      .registerTransaction(newTransaction)
+      .subscribe((resp) => {
+        if (resp.TRANSACTION) {
+          this._notificationService.enviarAlerta(
+            'success',
+            'Recarga',
+            'Su recarga por ' + this.money + '$ se ha efectuado correctamente'
+          );
+        }
+        window.location.reload();
+      });
+
     modal.close('Close click');
   }
 }

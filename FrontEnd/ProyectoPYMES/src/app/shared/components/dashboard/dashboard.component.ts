@@ -26,15 +26,7 @@ export class DashboardComponent implements OnInit {
         this._kartService
           .getCartServer(session?._id ? session?._id : '')
           .subscribe((server) => {
-            let kartServer = server.KART;
-            if (kartServer) {
-              this._kartService.mixKarts(kartServer);
-              this._kartService
-                .updateCarServer(kartServer)
-                .subscribe((resp) => {
-                  this.kart = resp.KART;
-                });
-            }
+            this.kart = server.KART;
           });
       }
     }

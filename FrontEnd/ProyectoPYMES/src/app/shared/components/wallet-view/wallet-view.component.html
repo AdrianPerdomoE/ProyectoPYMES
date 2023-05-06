@@ -32,7 +32,14 @@
     </div>
   </div>
   <div class="row p-2">
-    <div class="col-2 card" *ngFor="let transacion of transaciones">
+    <div class="card-header py-3">
+      <h5 class="mb-0">Transacciones:</h5>
+    </div>
+    <div
+      class="col card"
+      style="align-items: center"
+      *ngFor="let transacion of transaciones"
+    >
       <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
         <!-- Data -->
         <p>
@@ -54,7 +61,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Ingresa tus datos</h4>
+    <h4 class="modal-title">Recarga la billetera</h4>
     <button
       type="button"
       class="btn-close"

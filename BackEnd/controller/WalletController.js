@@ -11,7 +11,7 @@ var WalletController = {
         if (!owner_id) {
             return req.status(404).send({ message: 'Id was not provided' })
         }
-        Wallet.find({owner_id:owner_id}).exec().then(
+        Wallet.findOne({owner_id:owner_id}).exec().then(
             (wallet) => {
                 if (!wallet) {
                     return res.status(404).send({ msg: "There is not wallet" });
