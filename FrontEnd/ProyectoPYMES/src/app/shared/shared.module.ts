@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ShoppingKartComponent } from './components/shopping-kart/shopping-kart.component';
 import { ShoppingKartItemComponent } from './components/shopping-kart-item/shopping-kart-item.component';
+import { WalletViewComponent } from './components/wallet-view/wallet-view.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ShoppingKartItemComponent } from './components/shopping-kart-item/shopp
     LoginComponent,
     ShoppingKartComponent,
     ShoppingKartItemComponent,
+    WalletViewComponent,
   ],
   imports: [
     CommonModule,

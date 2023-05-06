@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CardPymeComponent } from './components/card-pyme/card-pyme.component';
 import { ListPymesComponent } from './components/list-pymes/list-pymes.component';
 import { AppPYMESModule } from '../app-pymes/app-pymes.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SideBarClientComponent } from './components/side-bar-client/side-bar-client.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { AppPYMESModule } from '../app-pymes/app-pymes.module';
     HomeComponent,
     CardPymeComponent,
     ListPymesComponent,
+    ProfileComponent,
+    SideBarClientComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +30,7 @@ import { AppPYMESModule } from '../app-pymes/app-pymes.module';
     AppRoutingModule,
     FormsModule,
     AppPYMESModule,
+  
   ],
 })
 export class AppClientModule {}

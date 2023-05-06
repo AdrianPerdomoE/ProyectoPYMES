@@ -28,16 +28,11 @@ export class TransactionService {
     });
   }
 
-  getTransactionsPyme(id: string): Observable<any> {
+  getTransactions(id: string): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.get(`${this.url}getTransactionsPyme/${id}`, {
+    return this._http.get(`${this.url}getTransactions/${id}`, {
       headers: headers,
     });
   }
-  getTransactionsUser(id: string): Observable<any> {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.get(`${this.url}getTransactionsUser/${id}`, {
-      headers: headers,
-    });
-  }
+  
 }

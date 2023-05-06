@@ -69,7 +69,6 @@ export class LoginComponent implements OnInit {
           )
         )
       )
-      .pipe(tap((taped) => console.log(taped)))
       .subscribe((re: any) => {
         if (re?.Exist == false) {
           this._notificationService.enviarAlerta(

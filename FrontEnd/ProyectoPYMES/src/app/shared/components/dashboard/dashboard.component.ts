@@ -12,7 +12,7 @@ import { KartService } from '../../services/Kart.service';
 export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
-    private _sessionService: SesionService,
+    public _sessionService: SesionService,
     private _kartService: KartService
   ) {}
   kart: Kart = new Kart(0, [], 0);

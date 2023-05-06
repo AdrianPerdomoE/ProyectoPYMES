@@ -1,6 +1,6 @@
 "use strict"
 var Transaction = require('../models/Transaction');
-
+var Wallet = require("../models/Wallet");
 
 
 var TransactionController = {
@@ -18,8 +18,15 @@ var TransactionController = {
                 if (!TransactionSaved) {
                     return res.status(404).send({ msg: 'Transaction could not be saved' })
                 }
-               
-                return res.status(200).send({ msg: 'Transaction created successfully', TRANSACTION: TransactionSaved });
+                Wallet.findByIdAndUpdate(params.wallet_id, {$sum:{money:params.value}}, { new: true }).then((walletUpdate) => {
+                    if(walletUpdate){
+                        return res.status(200).send({ msg: 'Transaction created successfully', TRANSACTION: TransactionSaved });
+                    }
+                    else{
+                        return res.status(404).send({ msg: 'Transaction could not be saved' })
+                    }
+                })
+                
                 
                 
             });
