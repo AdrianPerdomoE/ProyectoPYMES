@@ -98,7 +98,6 @@ export class LoginComponent implements OnInit {
               re.LOGGED.shoppingKart
             );
           }
-          console.log(typeof session);
           this._sessionService.logSesion(session);
           this._notificationService.enviarAlerta(
             'success',

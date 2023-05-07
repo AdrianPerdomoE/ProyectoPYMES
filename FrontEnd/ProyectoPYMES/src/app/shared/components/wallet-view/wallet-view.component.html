@@ -51,7 +51,7 @@
           >
         </p>
         <p>Detalles: {{ transacion.detail }}</p>
-        <p>fecha: {{ transacion.creationDate }}</p>
+        <p>fecha: {{ transacion.creationDate | date : "dd/MM/yyyy" }}</p>
 
         <!-- Data -->
       </div>
