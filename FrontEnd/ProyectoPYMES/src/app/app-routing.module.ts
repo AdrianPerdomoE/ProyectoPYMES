@@ -11,9 +11,18 @@ import { ShoppingKartComponent } from './shared/components/shopping-kart/shoppin
 import { SideBarClientComponent } from './modules/app-client/components/side-bar-client/side-bar-client.component';
 import { ProfileComponent } from './modules/app-client/components/profile/profile.component';
 import { WalletViewComponent } from './shared/components/wallet-view/wallet-view.component';
+import { EditProductComponent } from './modules/app-pymes/components/edit-product/edit-product.component';
+import { AddProductComponent } from './modules/app-pymes/components/add-product/add-product.component';
 
 const routes: Routes = [
-  { path: 'PYME_HOME', component: PYMELogComponent, children: [] },
+  {
+    path: 'PYME_HOME',
+    component: PYMELogComponent,
+    children: [
+      { path: 'Product/:id', component: EditProductComponent },
+      { path: 'AddProduct', component: AddProductComponent },
+    ],
+  },
   {
     path: '',
     redirectTo: '/',

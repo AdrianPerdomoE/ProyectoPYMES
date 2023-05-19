@@ -1,0 +1,36 @@
+    <div class="productForm container">
+    <h2 class="title">{{title}}</h2>
+    <div class="message Success" *ngIf="status =='Success'">El producto ha sido creado correctamente, puedes verlo <a
+        [routerLink]="['/Product',savedProduct._id]" routerLinkActive="router-link-active" >AQUI</a></div>
+    <div class="message Failed" *ngIf="status ==' Failed'"></div>
+    <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+        <div>
+            <label for="name">Nombre del producto</label>
+            <input name="name" type="text" #nombre="ngModel" [(ngModel)]="product.name" required>
+            <span *ngIf="nombre.touched && !nombre.value" class="formError">Este campo es obligatorio</span>
+        </div>
+        <div>
+            <label for="caracteristicas">Caracteristicas del producto</label>
+            <textarea name="caracteristicas" type="text" #caract="ngModel" [(ngModel)]="product.description"
+                required></textarea>
+            <span *ngIf="caract.touched && !caract.value" class="formError">Este campo es obligatorio</span>
+        </div>
+        <div>
+            <label for="precio">Precio del producto</label>
+            <input min="0" name="precio" type="number" #precio="ngModel" [(ngModel)]="product.price" required>
+            <span *ngIf="precio.touched && !precio.value" class="formError">Este campo es obligatorio</span>
+        </div>
+        <div>
+            <label for="cantidad">Cantidad de producto</label>
+            <input min="0" name="cantidad" type="number" #cantidad="ngModel" [(ngModel)]="product.stock" required>
+            <span *ngIf="cantidad.touched && !cantidad.value" class="formError">Este campo es obligatorio</span>
+        </div>
+        <div>
+            <label for="imagen">Imagen del producto</label>
+            <input name="imagen" type="file" placeholder="Subir imagen" #imagen="ngModel" [(ngModel)]="product.image"
+                (change)="fileChangeEvent($event)" required>
+            <span *ngIf="imagen.touched && !imagen.value" class="formError">Este campo es obligatorio</span>
+        </div>
+        <input type="submit" value="Enviar" [disabled]="!productForm.form.valid">
+    </form>
+</div>

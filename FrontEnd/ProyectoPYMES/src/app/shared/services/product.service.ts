@@ -19,6 +19,11 @@ export class ProductService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.post(`${this.url}saveProduct`, params, { headers: headers })
 }
+updateProduct(product: Product): Observable<any> {
+  let params = JSON.stringify(product)
+  let headers = new HttpHeaders().set('Content-Type', 'application/json');
+  return this._http.post(`${this.url}UpdateProduct/${product._id}`, params, { headers: headers })
+}
   getProduct(id: string): Observable<any> {
     let headers = new HttpHeaders().set("Content-Type", "application/json");
     return this._http.get(`${this.url}getProduct/${id}`, { headers: headers });
