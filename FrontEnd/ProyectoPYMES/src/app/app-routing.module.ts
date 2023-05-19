@@ -13,6 +13,7 @@ import { ProfileComponent } from './modules/app-client/components/profile/profil
 import { WalletViewComponent } from './shared/components/wallet-view/wallet-view.component';
 import { EditProductComponent } from './modules/app-pymes/components/edit-product/edit-product.component';
 import { AddProductComponent } from './modules/app-pymes/components/add-product/add-product.component';
+import { ManagementPymeComponent } from './modules/app-pymes/components/management-pyme/management-pyme.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
     children: [
       { path: 'Product/:id', component: EditProductComponent },
       { path: 'AddProduct', component: AddProductComponent },
+      {path:'MyProducts',component:ManagementPymeComponent},
+      { path: 'Wallet', component: WalletViewComponent },
+
     ],
   },
   {

@@ -12,9 +12,11 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { ManagementPymeComponent } from './components/management-pyme/management-pyme.component';
 import { RouterModule } from '@angular/router';
+import { NavbarPymeComponent } from './components/navbar-pyme/navbar-pyme.component';
+import { ProductPymeViewComponent } from './components/product-pyme-view/product-pyme-view.component';
 
 @NgModule({
-  declarations: [PYMELogComponent, ProductoComponent, PymeDesignComponent, EditProductComponent, AddProductComponent, ManagementPymeComponent],
+  declarations: [PYMELogComponent, ProductoComponent, PymeDesignComponent, EditProductComponent, AddProductComponent, ManagementPymeComponent, NavbarPymeComponent, ProductPymeViewComponent],
   imports: [
     CommonModule,
     SharedModule,
