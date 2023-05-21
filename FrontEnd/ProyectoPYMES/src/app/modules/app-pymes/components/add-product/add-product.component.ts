@@ -3,6 +3,8 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/shared/models/Product';
 import { UploadFileService } from 'src/app/shared/services/UploadFileService';
 import { Global } from 'src/app/shared/constants/Global';
+import { SesionService } from 'src/app/shared/services/Sesion.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -16,9 +18,12 @@ export class AddProductComponent implements OnInit {
   public savedProduct: Product;
   public url = Global.url;
   public selecionado?: any;
+
   constructor(
     private _productService: ProductService,
-    private _UploadFileService: UploadFileService
+    private _UploadFileService: UploadFileService,
+    private _sesionService: SesionService,
+    private _router: Router
   ) {
     this.title = 'Crear Producto';
     this.product = new Product(
@@ -48,10 +53,15 @@ export class AddProductComponent implements OnInit {
       ''
     );
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let Sesion = this._sesionService.getCurrentUser();
+    if (Sesion) {
+      this.product.pyme_id = Sesion._id;
+    }
+  }
   onSubmit(productForm: any) {
     this._productService.registerProduct(this.product).subscribe((response) => {
-      if (response) {
+      if (response.PRODUCT) {
         //Subir la imagen
         if (this.filesToUpload.length >= 1) {
           this._UploadFileService
@@ -62,7 +72,7 @@ export class AddProductComponent implements OnInit {
               'image'
             )
             .then((result: any) => {
-              this.savedProduct = result.productUpdated;
+              this.savedProduct = result.PRODUCT;
             });
         }
         this.status = 'Success';
@@ -75,5 +85,8 @@ export class AddProductComponent implements OnInit {
 
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+  redirect() {
+    this._router.navigate(['PYME_HOME', 'Product', this.savedProduct._id]);
   }
 }

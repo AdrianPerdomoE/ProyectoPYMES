@@ -3,8 +3,7 @@
   <div class="message Success" *ngIf="status == 'Success'">
     El producto ha sido creado correctamente, puedes verlo
     <a
-      [routerLink]="['/Product', savedProduct._id]"
-      routerLinkActive="router-link-active"
+        (click)="redirect()"
       >AQUI</a
     >
   </div>
