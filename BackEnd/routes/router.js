@@ -3,8 +3,6 @@
 
 var express = require("express");
 var router = express.Router();
-var multipart = require("connect-multiparty");
-var multipartMiddleWare = multipart({ uploadDir: "./archivos" });
 
 //importacion de controladores 
 var ProductController = require('../controller/ProductController')
@@ -16,6 +14,10 @@ var WalletController = require('../controller/WalletController')
 var TransactionController = require('../controller/TransactionController')
 var SuscriptionController = require('../controller/SuscriptionController')
 var InvestmentController = require('../controller/InvestmentController')
+
+var multipart = require("connect-multiparty");
+var multipartMiddleWare = multipart({ uploadDir: "./img" });
+
 //rutas para User
 router.post('/saveUser',UserController.saveUser);
 router.get('/getUser/:id',UserController.getUser);
@@ -39,7 +41,7 @@ router.get("/GetProduct/:id", ProductController.getProduct);
 router.get("/GetProducts", ProductController.getProducts);
 router.put("/UpdateProduct/:id", ProductController.updateProduct);
 router.delete("/DeleteProduct/:id", ProductController.deleteProduct);
-router.post("/UploadImage/:id", multipartMiddleWare, ProductController.uploadImagen);
+router.post("/UploadImagen/:id", multipartMiddleWare, ProductController.uploadImagen);
 router.get("/GetImage/:image", ProductController.getImageFile);
 router.get("/getProductByName/:searchBy", ProductController.getProductByName);
 router.get("/getProductsById/:id", ProductController.getProductsById);

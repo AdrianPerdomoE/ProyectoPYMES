@@ -17,21 +17,21 @@ import { ManagementPymeComponent } from './modules/app-pymes/components/manageme
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/Home',
+    pathMatch: 'full',
+  },
+  {
     path: 'PYME_HOME',
     component: PYMELogComponent,
     children: [
       { path: 'Product/:id', component: EditProductComponent },
       { path: 'AddProduct', component: AddProductComponent },
-      {path:'MyProducts',component:ManagementPymeComponent},
+      { path: 'MyProducts', component: ManagementPymeComponent },
       { path: 'Wallet', component: WalletViewComponent },
-
     ],
   },
-  {
-    path: '',
-    redirectTo: '/',
-    pathMatch: 'full',
-  },
+
   {
     path: '',
     component: ClientViewComponent,

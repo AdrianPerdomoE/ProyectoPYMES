@@ -56,8 +56,9 @@ export class EditProductComponent implements OnInit {
   onSubmit() {
     this._productService.updateProduct(this.product).subscribe({
       next: (response) => {
-        if (response.product) {
+        if (response.PRODUCT) {
           if (this.filesToUpload.length >= 1) {
+            console.log(this.url)
             this._uploadFileService
               .makeFileRequest(
                 `${this.url}UploadImagen/${this.product._id}`,

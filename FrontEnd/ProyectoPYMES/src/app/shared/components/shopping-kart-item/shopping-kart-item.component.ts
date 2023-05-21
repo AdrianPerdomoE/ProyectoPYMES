@@ -4,6 +4,7 @@ import { Suscription } from '../../models/Suscription';
 import { KartService } from '../../services/Kart.service';
 import { SesionService } from '../../services/Sesion.service';
 import { Kart } from '../../models/Kart';
+import { Global } from '../../constants/Global';
 
 @Component({
   selector: 'app-shopping-kart-item',
@@ -14,13 +15,14 @@ export class ShoppingKartItemComponent implements OnInit {
   @Input() kartItem!: KartItem;
   @Input() kart!: Kart;
   @Input() index!: number;
+  public url = Global.url;
   constructor(
     private _kartService: KartService,
     private _sessionService: SesionService
   ) {}
 
   ngOnInit(): void {}
-  change_amount(value:number) {
+  change_amount(value: number) {
     this.kart = this._kartService.changeAmount(
       this.index,
       value + this.kartItem.amount,

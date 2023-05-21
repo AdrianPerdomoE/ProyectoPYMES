@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Global } from 'src/app/shared/constants/Global';
 import { Kart } from 'src/app/shared/models/Kart';
 import { Product } from 'src/app/shared/models/Product';
 import { KartService } from 'src/app/shared/services/Kart.service';
@@ -12,6 +13,7 @@ import { SesionService } from 'src/app/shared/services/Sesion.service';
 export class ProductoComponent implements OnInit {
   @Input() product!: Product;
   @Input() pymeName!: string;
+  public url = Global.url;
   constructor(
     private _kartService: KartService,
     private _sessionService: SesionService
