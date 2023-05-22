@@ -2,9 +2,13 @@
   <div
     class="card h-100"
     [routerLink]="['/Pyme/', pyme.name, pyme._id]"
-    style="cursor:pointer"
+    style="cursor: pointer"
   >
-    <img [src]="pyme.logo" class="card-img-top" [alt]="pyme.name" />
+    <img
+      src="{{ url + 'GetImage/' + pyme.logo }}"
+      class="card-img-top"
+      [alt]="pyme.name"
+    />
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <h5 class="card-title">{{ pyme.name }}</h5>
@@ -23,7 +27,7 @@
 
           <span class="badge rounded-pill bg-warning text-dark ms-1">
             <i class="fa fa-star fa-sm"></i>
-            {{ pyme.creationDate  | date: 'dd/MM/yyyy'}}
+            {{ pyme.creationDate | date : "dd/MM/yyyy" }}
           </span>
         </div>
       </div>

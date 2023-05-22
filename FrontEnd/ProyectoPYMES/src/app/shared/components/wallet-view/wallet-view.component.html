@@ -44,10 +44,10 @@
         <!-- Data -->
         <p>
           <strong [hidden]="transacion.value > 0" style="color: red">
-            valor: {{ transacion.value }}</strong
+            valor: {{ transacion.value | currency : "USD" }}</strong
           >
           <strong [hidden]="transacion.value < 0" style="color: green">
-            valor: {{ transacion.value }}</strong
+            valor: {{ transacion.value | currency : "USD" }}</strong
           >
         </p>
         <p>Detalles: {{ transacion.detail }}</p>

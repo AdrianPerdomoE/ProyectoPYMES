@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Kart } from 'src/app/shared/models/Kart';
+import { KartService } from 'src/app/shared/services/Kart.service';
 
 @Component({
   selector: 'app-side-bar-client',
@@ -7,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./side-bar-client.component.css'],
 })
 export class SideBarClientComponent implements OnInit {
-  constructor(private _router:Router) {}
+  constructor(private _router: Router,private KartService:KartService) {}
 
   ngOnInit(): void {
-    this._router.navigate(['MyProfile']);
+    this._router.navigate(['Profile', 'MyProfile']);
   }
   toggle() {
     let wrapper = document.getElementById('wrapper');
@@ -18,8 +20,10 @@ export class SideBarClientComponent implements OnInit {
       wrapper.classList.toggle('toggled');
     }
   }
-  cerrar(){
+  cerrar() {
     sessionStorage.clear();
+    this.KartService.saveCartSession(new Kart(0,[],0));
     this._router.navigateByUrl('/Home');
+    
   }
 }

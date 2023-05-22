@@ -31,6 +31,7 @@ export class KartService {
   saveCartSession(kart: Kart): void {
     let kartString = JSON.stringify(kart);
     localStorage.setItem(Global.KART, kartString);
+    this.carritoState.next(kart);
   }
 
   getCartServer(id: string): Observable<any> {

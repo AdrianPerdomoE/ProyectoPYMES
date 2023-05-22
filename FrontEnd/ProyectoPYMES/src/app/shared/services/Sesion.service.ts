@@ -34,4 +34,12 @@ export class SesionService {
     }
     return undefined;
   }
+  getCurrentType(): String {
+    let sesionString = sessionStorage.getItem(Global.SESSION);
+    if (sesionString) {
+      let logger: Sesion = JSON.parse(sesionString);
+      return logger.type;
+    }
+    return "";
+  }
 }

@@ -60,6 +60,7 @@
               placeholder="Calle xx Numero xx interior xx xxx"
               style="text-align: center; justify-content: center"
               [(ngModel)]="address"
+              #direccion
             />
           </div>
         </div>
@@ -98,7 +99,7 @@
               </li>
             </ul>
 
-            <button type="button" class="btn btn-primary btn-lg btn-block">
+            <button type="button" class="btn btn-primary btn-lg btn-block" (click)="pay()" [disabled]="!direccion.value">
               Ir a pagar
             </button>
           </div>
