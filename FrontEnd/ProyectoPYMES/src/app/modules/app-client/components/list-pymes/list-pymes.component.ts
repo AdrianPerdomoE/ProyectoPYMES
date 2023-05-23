@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pyme } from 'src/app/shared/models/Pyme';
+import { Pyme } from 'src/app/shared/models/Pyme'; 
 import { PymeService } from 'src/app/shared/services/Pyme.service';
 
 @Component({

@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PYMELogComponent } from './pages/pymelog/pymelog.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-
 import { FormsModule } from '@angular/forms';
 import { ProductoComponent } from './components/producto/producto.component';
 import { PymeDesignComponent } from './components/pyme-design/pyme-design.component';
@@ -14,9 +12,21 @@ import { ManagementPymeComponent } from './components/management-pyme/management
 import { RouterModule } from '@angular/router';
 import { NavbarPymeComponent } from './components/navbar-pyme/navbar-pyme.component';
 import { ProductPymeViewComponent } from './components/product-pyme-view/product-pyme-view.component';
+import { ProfilePymeComponent } from './components/profile-pyme/profile-pyme.component';
+
 
 @NgModule({
-  declarations: [PYMELogComponent, ProductoComponent, PymeDesignComponent, EditProductComponent, AddProductComponent, ManagementPymeComponent, NavbarPymeComponent, ProductPymeViewComponent],
+  declarations: [
+    PYMELogComponent,
+    ProductoComponent,
+    PymeDesignComponent,
+    EditProductComponent,
+    AddProductComponent,
+    ManagementPymeComponent,
+    NavbarPymeComponent,
+    ProductPymeViewComponent,
+    ProfilePymeComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,

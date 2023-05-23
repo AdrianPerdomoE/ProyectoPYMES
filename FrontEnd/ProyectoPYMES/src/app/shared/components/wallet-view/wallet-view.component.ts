@@ -61,8 +61,9 @@ export class WalletViewComponent implements OnInit {
             'Recarga',
             'Su recarga por ' + this.money + '$ se ha efectuado correctamente'
           );
+            this.ngOnInit();
         }
-        window.location.reload();
+      
       });
 
     modal.close('Close click');

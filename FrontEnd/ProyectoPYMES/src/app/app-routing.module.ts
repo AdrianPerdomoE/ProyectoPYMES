@@ -14,6 +14,11 @@ import { WalletViewComponent } from './shared/components/wallet-view/wallet-view
 import { EditProductComponent } from './modules/app-pymes/components/edit-product/edit-product.component';
 import { AddProductComponent } from './modules/app-pymes/components/add-product/add-product.component';
 import { ManagementPymeComponent } from './modules/app-pymes/components/management-pyme/management-pyme.component';
+import { ProfilePymeComponent } from './modules/app-pymes/components/profile-pyme/profile-pyme.component';
+import { StatisticsComponent } from './shared/components/statistics/statistics.component';
+import { StoresComponent } from './modules/app-client/components/stores/stores.component';
+import { RestaurantsComponent } from './modules/app-client/components/restaurants/restaurants.component';
+import { MarketsComponent } from './modules/app-client/components/markets/markets.component';
 
 const routes: Routes = [
   {
@@ -29,6 +34,8 @@ const routes: Routes = [
       { path: 'AddProduct', component: AddProductComponent },
       { path: 'MyProducts', component: ManagementPymeComponent },
       { path: 'Wallet', component: WalletViewComponent },
+      { path: 'Profile', component: ProfilePymeComponent },
+      { path: 'Estadisticas', component: StatisticsComponent },
     ],
   },
 
@@ -41,12 +48,16 @@ const routes: Routes = [
       { path: 'Home', component: HomeComponent },
       { path: 'Pyme/:name/:id', component: PymeDesignComponent },
       { path: 'ShoppingKart', component: ShoppingKartComponent },
+      { path: 'Stores', component: StoresComponent },
+      { path: 'Restaurants', component: RestaurantsComponent },
+      { path: 'Markets', component: MarketsComponent },
       {
         path: 'Profile',
         component: SideBarClientComponent,
         children: [
           { path: 'MyProfile', component: ProfileComponent },
           { path: 'Wallet', component: WalletViewComponent },
+          { path: 'Estadisticas', component: StatisticsComponent },
         ],
       },
     ],

@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ShoppingKartComponent } from './components/shopping-kart/shopping-kart.component';
 import { ShoppingKartItemComponent } from './components/shopping-kart-item/shopping-kart-item.component';
 import { WalletViewComponent } from './components/wallet-view/wallet-view.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { WalletViewComponent } from './components/wallet-view/wallet-view.compon
     ShoppingKartComponent,
     ShoppingKartItemComponent,
     WalletViewComponent,
+    StatisticsComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -32,10 +36,6 @@ import { WalletViewComponent } from './components/wallet-view/wallet-view.compon
     FormsModule,
   ],
   bootstrap: [],
-  exports: [
-    DashboardComponent,
-    TapToTopComponent,
-    LoginComponent,
-  ],
+  exports: [DashboardComponent, TapToTopComponent, LoginComponent],
 })
 export class SharedModule {}

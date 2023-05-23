@@ -12,16 +12,22 @@ import { ListPymesComponent } from './components/list-pymes/list-pymes.component
 import { AppPYMESModule } from '../app-pymes/app-pymes.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SideBarClientComponent } from './components/side-bar-client/side-bar-client.component';
+import { RestaurantsComponent } from './components/restaurants/restaurants.component';
+import { StoresComponent } from './components/stores/stores.component';
+import { MarketsComponent } from './components/markets/markets.component';
 
 @NgModule({
   declarations: [
     ClientViewComponent,
     RegisterComponent,
     HomeComponent,
-    CardPymeComponent,
     ListPymesComponent,
+    CardPymeComponent,
     ProfileComponent,
     SideBarClientComponent,
+    RestaurantsComponent,
+    MarketsComponent,
+    StoresComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +36,6 @@ import { SideBarClientComponent } from './components/side-bar-client/side-bar-cl
     AppRoutingModule,
     FormsModule,
     AppPYMESModule,
-  
   ],
 })
 export class AppClientModule {}
