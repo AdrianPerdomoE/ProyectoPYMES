@@ -19,6 +19,7 @@ import { StatisticsComponent } from './shared/components/statistics/statistics.c
 import { StoresComponent } from './modules/app-client/components/stores/stores.component';
 import { RestaurantsComponent } from './modules/app-client/components/restaurants/restaurants.component';
 import { MarketsComponent } from './modules/app-client/components/markets/markets.component';
+import { RegisterPymeComponent } from './modules/app-pymes/components/register-pyme/register-pyme.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
       { path: 'Stores', component: StoresComponent },
       { path: 'Restaurants', component: RestaurantsComponent },
       { path: 'Markets', component: MarketsComponent },
+      { path: 'RegisterPyme', component: RegisterPymeComponent },
       {
         path: 'Profile',
         component: SideBarClientComponent,
