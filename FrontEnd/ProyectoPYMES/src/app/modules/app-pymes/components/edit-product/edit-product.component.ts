@@ -17,6 +17,7 @@ export class EditProductComponent implements OnInit {
   public filesToUpload: Array<File>;
   public url: string;
   public selecionado?: any;
+  public showErrorMessage: boolean = false;
   constructor(
     private _route: ActivatedRoute,
     private _productService: ProductService,

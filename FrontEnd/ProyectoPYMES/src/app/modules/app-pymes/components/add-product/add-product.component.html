@@ -2,14 +2,11 @@
   <h2 class="title">{{ title }}</h2>
   <div class="message Success" *ngIf="status == 'Success'">
     El producto ha sido creado correctamente, puedes verlo
-    <a
-        (click)="redirect()"
-      >AQUI</a
-    >
+    <a (click)="redirect()">AQUÍ</a>
   </div>
-  <div class="message Failed" *ngIf="status == ' Failed'"></div>
+  <div class="message Failed" *ngIf="status == 'Failed'"></div>
   <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
-    <div>
+    <div class="form-group">
       <label for="name">Nombre del producto</label>
       <input
         name="name"
@@ -17,25 +14,23 @@
         #nombre="ngModel"
         [(ngModel)]="product.name"
         required
+        class="form-control"
       />
-      <span *ngIf="nombre.touched && !nombre.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <span *ngIf="nombre.touched && !nombre.value" class="formError">Este campo es obligatorio</span>
     </div>
-    <div>
-      <label for="caracteristicas">Caracteristicas del producto</label>
+    <div class="form-group">
+      <label for="caracteristicas">Características del producto</label>
       <textarea
         name="caracteristicas"
         type="text"
         #caract="ngModel"
         [(ngModel)]="product.description"
         required
+        class="form-control"
       ></textarea>
-      <span *ngIf="caract.touched && !caract.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <span *ngIf="caract.touched && !caract.value" class="formError">Este campo es obligatorio</span>
     </div>
-    <div>
+    <div class="form-group">
       <label for="precio">Precio del producto</label>
       <input
         min="0"
@@ -44,12 +39,11 @@
         #precio="ngModel"
         [(ngModel)]="product.price"
         required
+        class="form-control"
       />
-      <span *ngIf="precio.touched && !precio.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <span *ngIf="precio.touched && !precio.value" class="formError">Este campo es obligatorio</span>
     </div>
-    <div>
+    <div class="form-group">
       <label for="cantidad">Cantidad de producto</label>
       <input
         min="0"
@@ -58,27 +52,29 @@
         #cantidad="ngModel"
         [(ngModel)]="product.stock"
         required
+        class="form-control"
       />
-      <span *ngIf="cantidad.touched && !cantidad.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <span *ngIf="cantidad.touched && !cantidad.value" class="formError">Este campo es obligatorio</span>
     </div>
-
-    <div>
+    <br>
+    <div class="form-group">
       <label for="imagen">Imagen del producto</label>
       <input
         name="imagen"
         type="file"
         placeholder="Subir imagen"
-        #imagen="ngModel"
-        [(ngModel)]="product.image"
+        #imagen
+        (click)="showErrorMessage = true" 
         (change)="fileChangeEvent($event)"
+        class="form-control"
         required
       />
-      <span *ngIf="imagen.touched && !imagen.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+
+      <div *ngIf="!imagen.value && showErrorMessage" class="form-text formError"> <!-- Mostrar el mensaje solo si no hay valor y showErrorMessage es true -->
+        Este campo es obligatorio
+      </div>
+
     </div>
-    <input type="submit" value="Enviar" [disabled]="!productForm.form.valid" />
+    <input type="submit" value="Enviar" [disabled]="!productForm.form.valid" class="btn custom-button" />
   </form>
 </div>

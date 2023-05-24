@@ -3,86 +3,100 @@
   <div class="message Success" *ngIf="status == 'Success'">
     El producto ha sido editado correctamente
   </div>
-  <div class="message Failed" *ngIf="status == ' Failed'">
+  <div class="message Failed" *ngIf="status == 'Failed'">
     El producto no se ha podido guardar
   </div>
   <form #productForm="ngForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="name">Nombre del producto</label>
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre del producto</label>
       <input
         name="name"
         type="text"
         #nombre="ngModel"
         [(ngModel)]="product.name"
+        class="form-control"
         required
       />
-      <span *ngIf="nombre.touched && !nombre.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <div *ngIf="nombre.touched && !nombre.value" class="form-text formError">
+        Este campo es obligatorio
+      </div>
     </div>
-    <div>
-      <label for="caracteristicas">Caracteristicas del producto</label>
+    <div class="mb-3">
+      <label for="caracteristicas" class="form-label"
+        >Caracteristicas del producto</label
+      >
       <textarea
         name="caracteristicas"
         type="text"
         #caract="ngModel"
         [(ngModel)]="product.description"
+        class="form-control"
         required
       ></textarea>
-      <span *ngIf="caract.touched && !caract.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <div *ngIf="caract.touched && !caract.value" class="form-text formError">
+        Este campo es obligatorio
+      </div>
     </div>
-    <div>
-      <label for="precio">Precio del producto</label>
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio del producto</label>
       <input
         min="0"
         name="precio"
         type="number"
         #precio="ngModel"
         [(ngModel)]="product.price"
+        class="form-control"
         required
       />
-      <span *ngIf="precio.touched && !precio.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <div *ngIf="precio.touched && !precio.value" class="form-text formError">
+        Este campo es obligatorio
+      </div>
     </div>
-    <div>
-      <label for="cantidad">Cantidad de producto</label>
+    <div class="mb-3">
+      <label for="cantidad" class="form-label">Cantidad de producto</label>
       <input
         min="0"
         name="cantidad"
         type="number"
         #cantidad="ngModel"
         [(ngModel)]="product.stock"
+        class="form-control"
         required
       />
-      <span *ngIf="cantidad.touched && !cantidad.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+      <div *ngIf="cantidad.touched && !cantidad.value" class="form-text formError">
+        Este campo es obligatorio
+      </div>
     </div>
-    <div class="imagen">
-      <label for="imagen">Imagen del producto</label>
-      <img
-        src="{{ url + 'GetImage/' + product.image }}"
-        *ngIf="product.image"
-      />
+    <div class="mb-3 imagen">
+      <label for="imagen" class="form-label">Imagen del producto</label>
+      <div class="image-container">
+        <img
+          src="{{ url + 'GetImage/' + product.image }}"
+          *ngIf="product.image"
+          class="rounded"
+        />
+      </div>
+      <br>
       <input
         name="imagen"
         type="file"
         placeholder="Subir imagen"
         #imagen
+        (click)="showErrorMessage = true" 
         (change)="fileChangeEvent($event)"
+        class="form-control"
         required
       />
-      <span *ngIf="!imagen.value" class="formError"
-        >Este campo es obligatorio</span
-      >
+
+      <div *ngIf="!imagen.value && showErrorMessage" class="form-text formError"> <!-- Mostrar el mensaje solo si no hay valor y showErrorMessage es true -->
+        Este campo es obligatorio
+      </div>
     </div>
     <input
       type="submit"
       value="Enviar"
       [disabled]="!productForm.form.touched"
+      class="btn custom-button"
     />
   </form>
 </div>

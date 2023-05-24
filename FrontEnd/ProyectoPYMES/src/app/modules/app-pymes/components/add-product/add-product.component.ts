@@ -18,6 +18,8 @@ export class AddProductComponent implements OnInit {
   public savedProduct: Product;
   public url = Global.url;
   public selecionado?: any;
+  public showErrorMessage: boolean = false;
+
 
   constructor(
     private _productService: ProductService,
