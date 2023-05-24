@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarPymeComponent } from './components/navbar-pyme/navbar-pyme.component';
 import { ProductPymeViewComponent } from './components/product-pyme-view/product-pyme-view.component';
 import { ProfilePymeComponent } from './components/profile-pyme/profile-pyme.component';
-
+import { RegisterPymeComponent } from './components/register-pyme/register-pyme.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { ProfilePymeComponent } from './components/profile-pyme/profile-pyme.com
     NavbarPymeComponent,
     ProductPymeViewComponent,
     ProfilePymeComponent,
+    RegisterPymeComponent,
   ],
   imports: [
     CommonModule,

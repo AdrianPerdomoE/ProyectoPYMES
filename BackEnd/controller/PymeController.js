@@ -109,7 +109,7 @@ var PymeController = {
             var extSplit = fileName.split("\.");
             var fileExt = extSplit[1];
             if (fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg" || fileExt == "gif") {
-                Pyme.findByIdAndUpdate(pyme_id, { imagen: fileName }, { new: true }).then((pymeUpdated) => {
+                Pyme.findByIdAndUpdate(pyme_id, { logo: fileName }, { new: true }).then((pymeUpdated) => {
                     if (!pymeUpdated) {
                         return res.status(404).send({ msg: "The image dont exist" });
                     }

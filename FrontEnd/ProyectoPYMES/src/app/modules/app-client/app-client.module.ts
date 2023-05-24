@@ -28,6 +28,7 @@ import { MarketsComponent } from './components/markets/markets.component';
     RestaurantsComponent,
     MarketsComponent,
     StoresComponent,
+    
   ],
   imports: [
     CommonModule,
