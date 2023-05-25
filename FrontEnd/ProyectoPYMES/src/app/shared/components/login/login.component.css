@@ -1,7 +1,21 @@
-.link-style {
-    text-decoration: underline;
-  }
-  
-  .link-style:hover {
-    cursor: pointer;
-  }
+:root{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.root{
+  --color-dashboard: #413A1C;
+  --color-title-dashboard: #FFFFFF;
+  --color-background: #DDD3BF;
+  --color-title: #D54636;
+  --color-button: #478AD9;
+  --color-text: #1E3135;
+}
+
+.text-primary{
+  background-color: var(--color-text);
+  height: 80px;
+  width: auto;
+  cursor: pointer;
+}
