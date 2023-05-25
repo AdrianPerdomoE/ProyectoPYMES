@@ -13,6 +13,8 @@ import { ShoppingKartComponent } from './components/shopping-kart/shopping-kart.
 import { ShoppingKartItemComponent } from './components/shopping-kart-item/shopping-kart-item.component';
 import { WalletViewComponent } from './components/wallet-view/wallet-view.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     ShoppingKartItemComponent,
     WalletViewComponent,
     StatisticsComponent,
+    BarChartComponent,
+    LineChartComponent,
    
   ],
   imports: [
