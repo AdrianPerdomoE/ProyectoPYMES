@@ -20,3 +20,7 @@ body {
     background-color: #baefb8; /* Cambia el color de fondo */
     color: #333333; /* Cambia el color del texto */
     }
+
+body {
+      font-family: 'Times New Roman', Times, serif;
+    }
