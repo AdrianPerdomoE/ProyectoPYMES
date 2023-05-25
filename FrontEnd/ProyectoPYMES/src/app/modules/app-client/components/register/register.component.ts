@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         if (re.Exist == false) {
           this._UserService.registerUser(this.auxUser).subscribe((resul) => {
             if (resul.USER) {
-              this._notificationService.enviarNotificacion(
+              this._notificationService.enviarAlerta(
                 'info',
                 'Registro',
                 'Su usuario ha sido creado correctamente'

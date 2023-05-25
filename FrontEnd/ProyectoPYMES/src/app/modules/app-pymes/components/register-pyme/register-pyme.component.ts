@@ -69,10 +69,10 @@ export class RegisterPymeComponent implements OnInit {
                     'image'
                   )
                   .then((result: any) => {
-                    this._notificationService.enviarNotificacion(
+                    this._notificationService.enviarAlerta(
                       'info',
                       'Registro',
-                      'Su usuario ha sido creado correctamente'
+                      'Su pyme ha sido creado correctamente'
                     );
                     this.auxPyme = new Pyme('', '', '', '', new Date(), '');
                   });
@@ -82,7 +82,7 @@ export class RegisterPymeComponent implements OnInit {
               this._notificationService.enviarAlerta(
                 'error',
                 'Registro',
-                'No fue posible crear el usuario por un problema en el sistema'
+                'No fue posible crear la pyme por un problema en el sistema'
               );
             }
           });
