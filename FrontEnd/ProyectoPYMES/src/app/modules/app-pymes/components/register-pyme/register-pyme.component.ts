@@ -72,7 +72,7 @@ export class RegisterPymeComponent implements OnInit {
                     this._notificationService.enviarAlerta(
                       'info',
                       'Registro',
-                      'Su pyme ha sido creado correctamente'
+                      'Su pyme ha sido creada correctamente'
                     );
                     this.auxPyme = new Pyme('', '', '', '', new Date(), '');
                   });
