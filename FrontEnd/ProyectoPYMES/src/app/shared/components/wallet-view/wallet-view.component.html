@@ -1,60 +1,64 @@
 <div class="container p-2">
   <div class="row">
-    <div class="col">
+    <div class="col-md-6">
       <img src="../../../../assets/images/Wallet/cartera.png" width="150" />
-    </div>
-  </div>
-  <div class="row p-2">
-    <div class="col-2 card">
-      Tu dinero actual:{{ wallet.money | currency : "USD" }}
-    </div>
-    <div class="d-flex mb-4" style="max-width: 300px">
-      <button
-        class="btn btn-primary px-3 me-2"
-        (click)="openVerticallyCentered(content)"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="25"
-          height="25"
-          fill="currentColor"
-          class="bi bi-plus-circle"
-          viewBox="0 0 16 16"
+      <div class="row p-2">
+        <div class="col-sm-4 card d-flex align-items-center justify-content-center">
+          Tu dinero actual:{{ wallet.money | currency : "USD" }}
+        </div>
+        <div class="d-flex align-items-center" style="max-width: 300px;">
+          <button
+            class="btn btn-primary btn-lg px-3 me-2"
+            (click)="openVerticallyCentered(content)"
+            style="height: 60px; width: 60px;"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-plus-circle"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+              />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>     
+      <div class="row p-2">
+        <div class="card-header py-3">
+          <h5 class="mb-0">Transacciones:</h5>
+        </div>
+        <div
+          class="col-sm-8 card" 
+          style="align-items: left"
+          *ngFor="let transacion of transaciones"
         >
-          <path
-            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-          />
-          <path
-            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-          />
-        </svg>
-      </button>
-    </div>
-  </div>
-  <div class="row p-2">
-    <div class="card-header py-3">
-      <h5 class="mb-0">Transacciones:</h5>
-    </div>
-    <div
-      class="col card"
-      style="align-items: center"
-      *ngFor="let transacion of transaciones"
-    >
-      <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-        <!-- Data -->
-        <p>
-          <strong [hidden]="transacion.value > 0" style="color: red">
-            valor: {{ transacion.value | currency : "USD" }}</strong
-          >
-          <strong [hidden]="transacion.value < 0" style="color: green">
-            valor: {{ transacion.value | currency : "USD" }}</strong
-          >
-        </p>
-        <p>Detalles: {{ transacion.detail }}</p>
-        <p>fecha: {{ transacion.creationDate | date : "dd/MM/yyyy" }}</p>
+          <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+            <!-- Data -->
+            <p>
+              <strong [hidden]="transacion.value > 0" style="color: red">
+                valor: {{ transacion.value | currency : "USD" }}</strong
+              >
+              <strong [hidden]="transacion.value < 0" style="color: green">
+                valor: {{ transacion.value | currency : "USD" }}</strong
+              >
+            </p>
+            <p>Detalles: {{ transacion.detail }}</p>
+            <p>fecha: {{ transacion.creationDate | date : "dd/MM/yyyy" }}</p>
 
-        <!-- Data -->
+            <!-- Data -->
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <img src="../../../../assets/images/Wallet/dinero.jpg" class="w-100 img-fluid" />
     </div>
   </div>
 </div>
