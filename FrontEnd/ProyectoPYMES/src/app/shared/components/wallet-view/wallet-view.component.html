@@ -1,10 +1,10 @@
 <div class="container p-2">
   <div class="row">
     <div class="col-md-6">
-      <img src="../../../../assets/images/Wallet/cartera.png" width="150" />
-      <div class="row p-2">
+      <div class="d-flex align-items-center">
+        <img src="../../../../assets/images/Wallet/cartera.png" width="150" />
         <div class="col-sm-4 card d-flex align-items-center justify-content-center">
-          Tu dinero actual:{{ wallet.money | currency : "USD" }}
+          Tu dinero actual: {{ wallet.money | currency : "USD" }}
         </div>
         <div class="d-flex align-items-center" style="max-width: 300px;">
           <button
@@ -29,32 +29,28 @@
             </svg>
           </button>
         </div>
-      </div>     
+      </div>
       <div class="row p-2">
         <div class="card-header py-3">
-          <h5 class="mb-0">Transacciones:</h5>
+          <h5 class="mb-0">Historial de transacciones:</h5>
         </div>
-        <div
-          class="col-sm-8 card" 
-          style="align-items: left"
-          *ngFor="let transacion of transaciones"
-        >
-          <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+        <div class="col-sm-8 card w-100" style="max-height: 400px; overflow-y: auto;">
+          <div class="col-sm-8 card transacciones-container w-100" *ngFor="let transacion of transaciones">
             <!-- Data -->
             <p>
               <strong [hidden]="transacion.value > 0" style="color: red">
-                valor: {{ transacion.value | currency : "USD" }}</strong
-              >
+                Valor retirado: {{ transacion.value | currency : "USD" }}
+              </strong>
               <strong [hidden]="transacion.value < 0" style="color: green">
-                valor: {{ transacion.value | currency : "USD" }}</strong
-              >
+                Valor ingresado: {{ transacion.value | currency : "USD" }}
+              </strong>
             </p>
             <p>Detalles: {{ transacion.detail }}</p>
-            <p>fecha: {{ transacion.creationDate | date : "dd/MM/yyyy" }}</p>
-
+            <p>Fecha: {{ transacion.creationDate | date : "dd/MM/yyyy" }}</p>
             <!-- Data -->
           </div>
         </div>
+        
       </div>
     </div>
     <div class="col-md-6 d-flex align-items-center">
