@@ -22,9 +22,8 @@
         <div class="img">
           <img
             src="{{ url + 'GetImage/' + pyme.logo }}"
-            class="card-img-top"
+            class="card-img-top rounded"
             [alt]="pyme.name"
-            class="rounded"
           />
         </div>
       </div>
@@ -48,9 +47,23 @@
       </button>
     </div>
   </div>
-  <h1>Datos perfil</h1>
-  <p>{{ pyme.name }}</p>
-  <p>{{ pyme.category }}</p>
-  <p>{{ pyme.email }}</p>
-  <p>{{ pyme.creationDate | date : "dd/MM/yyyy" }}</p>
+  <h1>Datos de tu perfil</h1>
+  <table class="table table-bordered">
+    <tr>
+      <th>Nombre</th>
+      <td>{{ pyme.name }}</td>
+    </tr>
+    <tr>
+      <th>Categoría</th>
+      <td>{{ pyme.category }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ pyme.email }}</td>
+    </tr>
+    <tr>
+      <th>Fecha de creación</th>
+      <td>{{ pyme.creationDate | date : "dd/MM/yyyy" }}</td>
+    </tr>
+  </table>
 </div>
