@@ -13,9 +13,9 @@ mongoose
   )
   .then(() => {
     console.log("Conexión con la base de datos establecida con exito..");
-    app.listen(parseInt(process.env.port), () => {
+    app.listen(parseInt(process.env.PORT), () => {
       console.log(
-        `Servidor corriendo correctamente en la url: localhost:${process.env.port}`
+        `Servidor corriendo correctamente en la url: localhost:${process.env.PORT}`
       );
     });
   })
