@@ -4,8 +4,8 @@
   "description": "este es un proyecto de una aplicacion Ecommerce colaborativa para que las pymes puedan vender sus productos e interactuar entre ellos y sus clientes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node index.js"
   },
   "author": "Adrian David Perdomo,Viviana Muñoz,Sebastian Muñoz, Emmanuel Velez, Alejandro Molina",
   "license": "MIT",
@@ -14,7 +14,6 @@
     "connect-multiparty": "^2.2.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^7.0.3",
-    "nodemon": "^2.0.22"
+    "mongoose": "^7.0.3"
   }
 }
