@@ -1,5 +1,5 @@
 export const Global = {
-  url: 'http://localhost:3700/api/',
+  url: 'https://proyectopymesback-aweh-dev.fl0.io/api/',
   SESSION: 'SESSION',
   KART: 'KART',
   RESTAURANTS: 'Restaurantes',
